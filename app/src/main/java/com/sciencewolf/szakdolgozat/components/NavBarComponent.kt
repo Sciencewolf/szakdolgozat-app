@@ -1,5 +1,6 @@
 package com.sciencewolf.szakdolgozat.components
 
+import android.widget.Button
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -7,19 +8,26 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ButtonElevation
 import androidx.compose.material3.Divider
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Shapes
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.painterResource
+import androidx.navigation.compose.rememberNavController
 import com.sciencewolf.szakdolgozat.FOCUS_ON
 import com.sciencewolf.szakdolgozat.R
 
-// refactor: for inside function add params to update text value
 open class NavBarComponent {
 
     @Composable
@@ -50,22 +58,35 @@ open class NavBarComponent {
 
     @Composable
     fun HomeElement() {
-        OutlinedButton(onClick = {
+        Button(
+            onClick = {
 
-        }) {
-            HomeElementInside()
+            }) {
+            ColumnItems(
+                imageId = R.drawable.icons8_home_90,
+                imageContentDesc = "home",
+                text = "Home"
+            )
         }
 
         TextButton(onClick = {
 
         }) {
-            ImagesElementInside()
+            ColumnItems(
+                imageId = R.drawable.icons8_image_90,
+                imageContentDesc = "images",
+                text = "Images"
+            )
         }
 
         TextButton(onClick = {
 
         }) {
-            ControlElementInside()
+            ColumnItems(
+                imageId = R.drawable.icons8_control_90,
+                imageContentDesc = "control",
+                text = "Control"
+            )
         }
     }
 
@@ -74,19 +95,31 @@ open class NavBarComponent {
         TextButton(onClick = {
 
         }) {
-            HomeElementInside()
+            ColumnItems(
+                imageId = R.drawable.icons8_home_90,
+                imageContentDesc = "home",
+                text = "Home"
+            )
         }
 
-        OutlinedButton(onClick = {
+        Button(onClick = {
 
         }) {
-            ImagesElementInside()
+            ColumnItems(
+                imageId = R.drawable.icons8_image_90,
+                imageContentDesc = "images",
+                text = "Images"
+            )
         }
 
         TextButton(onClick = {
 
         }) {
-            ControlElementInside()
+            ColumnItems(
+                imageId = R.drawable.icons8_control_90,
+                imageContentDesc = "control",
+                text = "Control"
+            )
         }
     }
 
@@ -95,68 +128,51 @@ open class NavBarComponent {
         TextButton(onClick = {
 
         }) {
-            HomeElementInside()
+            ColumnItems(
+                imageId = R.drawable.icons8_home_90,
+                imageContentDesc = "home",
+                text = "Home"
+            )
         }
 
         TextButton(onClick = {
 
         }) {
-            ImagesElementInside()
+            ColumnItems(
+                imageId = R.drawable.icons8_image_90,
+                imageContentDesc = "images",
+                text = "Images"
+            )
         }
-
-        OutlinedButton(onClick = {
+        Button(onClick = {
 
         }) {
-            ControlElementInside()
-        }
-    }
-
-    @Composable
-    fun ControlElementInside() {
-        Column(
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.icons8_control_90),
-                contentDescription = "control icon"
-            )
-            Text(
-                text = "Control",
-                color = Color.Black
+            ColumnItems(
+                imageId = R.drawable.icons8_control_90,
+                imageContentDesc = "control",
+                text = "Control"
             )
         }
     }
 
     @Composable
-    fun ImagesElementInside() {
-        Column(
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.icons8_image_90),
-                contentDescription = "images icon"
-            )
-            Text(
-                text = "Images",
-                color = Color.Black
-            )
-        }
-    }
-
-    @Composable
-    fun HomeElementInside() {
+    fun ColumnItems(
+        imageId: Int,
+        imageContentDesc: String,
+        text: String
+    ) {
         Column(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
                 painter = painterResource(
-                    id = R.drawable.icons8_home_90),
-                contentDescription = "home icon")
+                    id = imageId
+                ),
+                contentDescription = "$imageContentDesc icon"
+            )
             Text(
-                text = "Home",
+                text = text,
                 color = Color.Black
             )
         }

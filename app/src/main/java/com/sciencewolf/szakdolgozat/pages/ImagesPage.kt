@@ -1,5 +1,8 @@
 package com.sciencewolf.szakdolgozat.pages
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyRow
@@ -13,6 +16,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ImageBitmap
 import coil.compose.AsyncImage
 import com.sciencewolf.szakdolgozat.components.NavBarComponent
 import com.sciencewolf.szakdolgozat.schemes.ImagesScheme
@@ -22,6 +26,8 @@ import io.github.jan.supabase.postgrest.query.Columns
 import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import android.util.Base64
+import androidx.compose.ui.graphics.asImageBitmap
 
 open class ImagesPage {
 
@@ -29,7 +35,7 @@ open class ImagesPage {
     fun LoadImagesPage(
         supabase: SupabaseClient,
         modifier: Modifier = Modifier
-        ) {
+    ) {
         var it by remember {
             mutableStateOf<List<ImagesScheme>>(listOf())
         }
@@ -40,7 +46,7 @@ open class ImagesPage {
             mutableStateOf(true)
         }
 
-        if(loading) {
+        if (loading) {
             Text(text = "Loading...")
         }
 
@@ -48,7 +54,7 @@ open class ImagesPage {
             withContext(Dispatchers.IO) {
                 it = supabase
                     .from("images")
-                    .select(columns = Columns.list("id", "url")) {
+                    .select(columns = Columns.list("id", "url", "base64text")) {
                         order(column = "id", Order.DESCENDING)
                         limit(2)
                     }
@@ -57,12 +63,12 @@ open class ImagesPage {
             }
         }
 
-        LazyRow (
+        LazyRow(
             modifier = Modifier.fillMaxWidth()
-        ){
+        ) {
             items(
                 it,
-                key = {data -> data.id}
+                key = { data -> data.id }
             ) { data ->
                 url = data.url
                 AsyncImage(

@@ -46,13 +46,13 @@ class GetDataFromDatabaseComponent {
         var loadingText by remember {
             mutableStateOf(true)
         }
-        Row (
+        Row(
             modifier = Modifier
                 .alpha(if (loadingText) 1f else 0f)
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
-        ){
+        ) {
             if (loadingText) {
                 Text(
                     text = "Loading..."
@@ -73,7 +73,7 @@ class GetDataFromDatabaseComponent {
         }
 
         LazyColumn {
-            items (
+            items(
                 it,
                 key = { data -> data.id },
             ) { data ->
