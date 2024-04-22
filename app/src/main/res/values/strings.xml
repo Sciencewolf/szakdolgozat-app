@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Szakdolgozat</string>
-    <string name="supabaseUrl">https://wwxbtwwiboelmaejmfel.supabase.co</string>
-    <string name="supabaseKey">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind3eGJ0d3dpYm9lbG1hZWptZmVsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTM0NjQ1MjgsImV4cCI6MjAyOTA0MDUyOH0.by0XncWfz9yZThVjJGL-M3Hp9nYpmAcubg0dwUu3Jaw</string>
+    <string name="supabaseUrl">"https://wwxbtwwiboelmaejmfel.supabase.co"</string>
+    <string name="supabaseKey">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind3eGJ0d3dpYm9lbG1hZWptZmVsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTM0NjQ1MjgsImV4cCI6MjAyOTA0MDUyOH0.by0XncWfz9yZThVjJGL-M3Hp9nYpmAcubg0dwUu3Jaw"</string>
 </resources>

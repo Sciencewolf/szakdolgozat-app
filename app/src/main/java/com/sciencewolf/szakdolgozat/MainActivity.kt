@@ -1,55 +1,60 @@
 package com.sciencewolf.szakdolgozat
 
 import android.os.Bundle
-import android.renderscript.RenderScript.Priority
+import android.service.controls.Control
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Button
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import androidx.core.app.NotificationCompat
+import com.sciencewolf.szakdolgozat.components.ExperimentalComponents
+import com.sciencewolf.szakdolgozat.components.GetDataFromDatabaseComponent
+import com.sciencewolf.szakdolgozat.components.NavBarComponent
+import com.sciencewolf.szakdolgozat.components.TopBarComponent
+import com.sciencewolf.szakdolgozat.pages.ControlPage
+import com.sciencewolf.szakdolgozat.pages.HomePage
+import com.sciencewolf.szakdolgozat.pages.ImagesPage
 import com.sciencewolf.szakdolgozat.ui.theme.SzakdolgozatTheme
-import io.github.jan.supabase.BuildConfig
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.postgrest.Postgrest
-import io.github.jan.supabase.postgrest.from
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 class MainActivity : ComponentActivity() {
-    private val components = Components()
-    private val supabase  = createSupabaseClient(
-        supabaseUrl = "https://wwxbtwwiboelmaejmfel.supabase.co",
-        supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind3eGJ0d3dpYm9lbG1hZWptZmVsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTM0NjQ1MjgsImV4cCI6MjAyOTA0MDUyOH0.by0XncWfz9yZThVjJGL-M3Hp9nYpmAcubg0dwUu3Jaw"
-
-    ) {
-        install(Postgrest)
-    }
+    private val homePage = HomePage()
+    private val imagesPage = ImagesPage()
+    private val navBarComponent = NavBarComponent()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val supabase  = createSupabaseClient(
+            supabaseUrl = resources.getString(R.string.supabaseUrl),
+            supabaseKey = resources.getString(R.string.supabaseKey)
+
+        ) {
+            install(Postgrest)
+        }
         super.onCreate(savedInstanceState)
         setContent {
-            SzakdolgozatTheme {
-                Surface {
-                    components.getDataFromDatabase(supabase)
+            SzakdolgozatTheme(darkTheme = true) {
+                Column (
+                    modifier = Modifier
+                        .fillMaxSize()
+                ) {
+                    imagesPage.LoadImagesPage(supabase = supabase)
+                    navBarComponent.NavBar(focusOn = FOCUS_ON.HOME)
                 }
+            }
+        }
+    }
+
+//    @Preview(showSystemUi = true, showBackground = true)
+    @Composable
+    fun preview() {
+        SzakdolgozatTheme {
+            Column (
+                modifier = Modifier
+                    .fillMaxSize()
+            ){
+                // components
             }
         }
     }
