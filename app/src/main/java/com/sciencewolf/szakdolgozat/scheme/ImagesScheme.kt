@@ -1,4 +1,4 @@
-package com.sciencewolf.szakdolgozat.schemes
+package com.sciencewolf.szakdolgozat.scheme
 
 import kotlinx.serialization.Serializable
 

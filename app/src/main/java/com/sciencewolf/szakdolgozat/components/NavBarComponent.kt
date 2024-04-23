@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.painterResource
+import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.sciencewolf.szakdolgozat.FOCUS_ON
 import com.sciencewolf.szakdolgozat.R
@@ -32,7 +33,8 @@ open class NavBarComponent {
 
     @Composable
     fun NavBar(
-        focusOn: FOCUS_ON
+        focusOn: FOCUS_ON,
+        navController: NavController
     ) {
         Column(
             modifier = Modifier.fillMaxSize(),
@@ -48,18 +50,104 @@ open class NavBarComponent {
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
                 when (focusOn) {
-                    FOCUS_ON.HOME -> HomeElement()
-                    FOCUS_ON.IMAGES -> ImagesElement()
-                    FOCUS_ON.CONTROL -> ControlElement()
+                    FOCUS_ON.IMAGES -> ImagesElement(navController)
+                    FOCUS_ON.HOME -> HomeElement(navController)
+                    FOCUS_ON.CONTROL -> ControlElement(navController)
                 }
             }
         }
     }
 
     @Composable
-    fun HomeElement() {
+    fun HomeElement(navController: NavController) {
+        TextButton(
+            onClick = {
+                navController.navigate("images")
+        }) {
+            ColumnItems(
+                imageId = R.drawable.icons8_image_90,
+                imageContentDesc = "images",
+                text = "Images"
+            )
+        }
+
         Button(
             onClick = {
+                navController.navigate("home")
+            }) {
+            ColumnItems(
+                imageId = R.drawable.icons8_home_90,
+                imageContentDesc = "home",
+                text = "Home"
+            )
+        }
+
+        TextButton(
+            onClick = {
+                navController.navigate("control")
+        }) {
+            ColumnItems(
+                imageId = R.drawable.icons8_control_90,
+                imageContentDesc = "control",
+                text = "Control"
+            )
+        }
+    }
+
+    @Composable
+    fun ImagesElement(navController: NavController) {
+        Button(
+            onClick = {
+                navController.navigate("images")
+
+        }) {
+            ColumnItems(
+                imageId = R.drawable.icons8_image_90,
+                imageContentDesc = "images",
+                text = "Images"
+            )
+        }
+
+        TextButton(
+            onClick = {
+                navController.navigate("home")
+            }) {
+            ColumnItems(
+                imageId = R.drawable.icons8_home_90,
+                imageContentDesc = "home",
+                text = "Home"
+            )
+        }
+
+        TextButton(
+            onClick = {
+                navController.navigate("control")
+        }) {
+            ColumnItems(
+                imageId = R.drawable.icons8_control_90,
+                imageContentDesc = "control",
+                text = "Control"
+            )
+        }
+    }
+
+    @Composable
+    fun ControlElement(navController: NavController) {
+        TextButton(
+            onClick = {
+                navController.navigate("images")
+
+        }) {
+            ColumnItems(
+                imageId = R.drawable.icons8_image_90,
+                imageContentDesc = "images",
+                text = "Images"
+            )
+        }
+
+        TextButton(
+            onClick = {
+                navController.navigate("home")
 
             }) {
             ColumnItems(
@@ -69,82 +157,9 @@ open class NavBarComponent {
             )
         }
 
-        TextButton(onClick = {
-
-        }) {
-            ColumnItems(
-                imageId = R.drawable.icons8_image_90,
-                imageContentDesc = "images",
-                text = "Images"
-            )
-        }
-
-        TextButton(onClick = {
-
-        }) {
-            ColumnItems(
-                imageId = R.drawable.icons8_control_90,
-                imageContentDesc = "control",
-                text = "Control"
-            )
-        }
-    }
-
-    @Composable
-    fun ImagesElement() {
-        TextButton(onClick = {
-
-        }) {
-            ColumnItems(
-                imageId = R.drawable.icons8_home_90,
-                imageContentDesc = "home",
-                text = "Home"
-            )
-        }
-
-        Button(onClick = {
-
-        }) {
-            ColumnItems(
-                imageId = R.drawable.icons8_image_90,
-                imageContentDesc = "images",
-                text = "Images"
-            )
-        }
-
-        TextButton(onClick = {
-
-        }) {
-            ColumnItems(
-                imageId = R.drawable.icons8_control_90,
-                imageContentDesc = "control",
-                text = "Control"
-            )
-        }
-    }
-
-    @Composable
-    fun ControlElement() {
-        TextButton(onClick = {
-
-        }) {
-            ColumnItems(
-                imageId = R.drawable.icons8_home_90,
-                imageContentDesc = "home",
-                text = "Home"
-            )
-        }
-
-        TextButton(onClick = {
-
-        }) {
-            ColumnItems(
-                imageId = R.drawable.icons8_image_90,
-                imageContentDesc = "images",
-                text = "Images"
-            )
-        }
-        Button(onClick = {
+        Button(
+            onClick = {
+                navController.navigate("control")
 
         }) {
             ColumnItems(
