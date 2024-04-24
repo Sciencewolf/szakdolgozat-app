@@ -11,7 +11,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.sciencewolf.szakdolgozat.scheme.GetDataScheme
+import com.sciencewolf.szakdolgozat.scheme.DataScheme
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.Dispatchers
@@ -21,7 +21,7 @@ open class AboutComponent {
     @Composable
     fun About(supabase: SupabaseClient) {
         var data by remember {
-            mutableStateOf<List<GetDataScheme>>(listOf())
+            mutableStateOf<List<DataScheme>>(listOf())
         }
         var version by remember {
             mutableStateOf("")

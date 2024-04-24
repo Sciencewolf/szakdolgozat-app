@@ -15,58 +15,20 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.sciencewolf.szakdolgozat.scheme.GetDataScheme
+import com.sciencewolf.szakdolgozat.components.GetVersionComponent
 import com.sciencewolf.szakdolgozat.scheme.VersionScheme
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.postgrest.from
-import io.github.jan.supabase.postgrest.query.Order
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 open class ControlPage {
+    private val getVersionComponent = GetVersionComponent()
     @Composable
     fun LoadControlPage(
         supabase: SupabaseClient,
         modifier: Modifier = Modifier
     ) {
-        var it by remember {
-            mutableStateOf<List<VersionScheme>>(listOf())
-        }
-        var loading by remember {
-            mutableStateOf(true)
-        }
-        var version by remember {
-            mutableStateOf("")
-        }
-
-        if (loading) {
-            Text(text = "loading...")
-        }
-
-        LaunchedEffect(Unit) {
-            withContext(Dispatchers.IO) {
-                it = supabase
-                    .from("version")
-                    .select()
-                    .decodeList<VersionScheme>()
-                loading = !loading
-            }
-        }
-
-        LazyRow (
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(12.dp),
-            horizontalArrangement = Arrangement.End
-        ){
-            items(
-                it,
-                key = {data -> data.id}
-            ) { data ->
-                version = data.v
-                Text(text = version)
-                Divider()
-            }
-        }
+        getVersionComponent.GetAndDisplayVersion(supabase = supabase)
     }
 }

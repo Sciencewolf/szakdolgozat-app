@@ -1,25 +1,21 @@
 package com.sciencewolf.szakdolgozat
 
 import android.os.Bundle
-import android.service.controls.Control
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.sciencewolf.szakdolgozat.components.GetDataFromDatabaseComponent
 import com.sciencewolf.szakdolgozat.components.NavBarComponent
-import com.sciencewolf.szakdolgozat.components.TopBarComponent
 import com.sciencewolf.szakdolgozat.pages.ControlPage
 import com.sciencewolf.szakdolgozat.pages.HomePage
 import com.sciencewolf.szakdolgozat.pages.ImagesPage
+import com.sciencewolf.szakdolgozat.pages.SettingsPage
+import com.sciencewolf.szakdolgozat.routing.FOCUS_ON
+import com.sciencewolf.szakdolgozat.routing.Routes
 import com.sciencewolf.szakdolgozat.ui.theme.SzakdolgozatTheme
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.createSupabaseClient
@@ -31,6 +27,7 @@ class MainActivity : ComponentActivity() {
     private val homePage = HomePage()
     private val imagesPage = ImagesPage()
     private val controlPage = ControlPage()
+    private val settingsPage = SettingsPage()
     private val navBarComponent = NavBarComponent()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,13 +47,13 @@ class MainActivity : ComponentActivity() {
             SzakdolgozatTheme(darkTheme = true) {
                 Column(
                     modifier = Modifier
-                        .padding(8.dp)
                 ) {
                     RoutingController(
                         supabase = supabase,
                         homePage = homePage,
                         imagesPage = imagesPage,
                         controlPage = controlPage,
+                        settingsPage = settingsPage,
                         navBarComponent = navBarComponent
                     )
                 }
@@ -71,6 +68,7 @@ fun RoutingController(
     homePage: HomePage,
     imagesPage: ImagesPage,
     controlPage: ControlPage,
+    settingsPage: SettingsPage,
     navBarComponent: NavBarComponent
 ) {
     val navController = rememberNavController()
@@ -98,6 +96,9 @@ fun RoutingController(
                 focusOn = FOCUS_ON.CONTROL,
                 navController = navController
             )
+        }
+        composable(route = Routes.SETTINGS.route) {
+            settingsPage.LoadSettings()
         }
     }
 }

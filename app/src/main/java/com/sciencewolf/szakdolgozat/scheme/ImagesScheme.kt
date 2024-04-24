@@ -3,8 +3,7 @@ package com.sciencewolf.szakdolgozat.scheme
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ImagesScheme (
+open class ImagesScheme (
     val id: Int,
-    val url: String,
-    val base64text: String
+    val url: String
 )
