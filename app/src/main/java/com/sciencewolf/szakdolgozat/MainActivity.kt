@@ -13,7 +13,7 @@ import com.sciencewolf.szakdolgozat.components.NavBarComponent
 import com.sciencewolf.szakdolgozat.pages.ControlPage
 import com.sciencewolf.szakdolgozat.pages.HomePage
 import com.sciencewolf.szakdolgozat.pages.ImagesPage
-import com.sciencewolf.szakdolgozat.pages.SettingsPage
+import com.sciencewolf.szakdolgozat.pages.ProfilePage
 import com.sciencewolf.szakdolgozat.routing.FOCUS_ON
 import com.sciencewolf.szakdolgozat.routing.Routes
 import com.sciencewolf.szakdolgozat.ui.theme.SzakdolgozatTheme
@@ -27,7 +27,7 @@ class MainActivity : ComponentActivity() {
     private val homePage = HomePage()
     private val imagesPage = ImagesPage()
     private val controlPage = ControlPage()
-    private val settingsPage = SettingsPage()
+    private val profilePage = ProfilePage()
     private val navBarComponent = NavBarComponent()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,7 +53,7 @@ class MainActivity : ComponentActivity() {
                         homePage = homePage,
                         imagesPage = imagesPage,
                         controlPage = controlPage,
-                        settingsPage = settingsPage,
+                        profilePage = profilePage,
                         navBarComponent = navBarComponent
                     )
                 }
@@ -68,7 +68,7 @@ fun RoutingController(
     homePage: HomePage,
     imagesPage: ImagesPage,
     controlPage: ControlPage,
-    settingsPage: SettingsPage,
+    profilePage: ProfilePage,
     navBarComponent: NavBarComponent
 ) {
     val navController = rememberNavController()
@@ -97,8 +97,12 @@ fun RoutingController(
                 navController = navController
             )
         }
-        composable(route = Routes.SETTINGS.route) {
-            settingsPage.LoadSettings()
+        composable(route = Routes.PROFILE.route) {
+            profilePage.LoadProfile()
+            navBarComponent.NavBar(
+                focusOn = FOCUS_ON.PROFILE,
+                navController = navController
+            )
         }
     }
 }

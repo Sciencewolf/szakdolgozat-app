@@ -3,9 +3,9 @@ package com.sciencewolf.szakdolgozat.components
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 
-open class SettingsComponent {
+open class ProfileComponent {
     @Composable
-    fun Settings() {
-        Text(text = "Settings")
+    fun Profile() {
+        Text(text = "Profile")
     }
 }

@@ -7,7 +7,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material3.Button
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -16,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.sciencewolf.szakdolgozat.routing.FOCUS_ON
 import com.sciencewolf.szakdolgozat.R
@@ -44,6 +47,7 @@ open class NavBarComponent {
                     FOCUS_ON.IMAGES -> ImagesElement(navController)
                     FOCUS_ON.HOME -> HomeElement(navController)
                     FOCUS_ON.CONTROL -> ControlElement(navController)
+                    FOCUS_ON.PROFILE -> ProfileElement(navController = navController)
                 }
             }
         }
@@ -51,153 +55,151 @@ open class NavBarComponent {
 
     @Composable
     fun HomeElement(navController: NavController) {
-        TextButton(
-            onClick = {
-                navController.navigate("images")
-        }) {
-            Content(
-                imageId = R.drawable.icons8_image_90,
-                imageContentDesc = "images",
-                text = "Images"
-            )
-        }
+        ItemUnit(
+            navController = navController,
+            imageId = R.drawable.icons8_control_90,
+            text = "Images",
+            isNavigate = true
+        )
 
-        Button(
-            onClick = {
-                // do nothing
-            }) {
-            Content(
-                imageId = R.drawable.icons8_home_90,
-                imageContentDesc = "home",
-                text = "Home"
-            )
-        }
+        ItemUnit(
+            navController = navController,
+            imageId = R.drawable.icons8_home_90,
+            text = "Home",
+            isNavigate = false
+        )
 
-        TextButton(
-            onClick = {
-                navController.navigate("control")
-        }) {
-            Content(
-                imageId = R.drawable.icons8_control_90,
-                imageContentDesc = "control",
-                text = "Control"
-            )
-        }
+        ItemUnit(
+            navController = navController,
+            imageId = R.drawable.icons8_control_90,
+            text = "Control",
+            isNavigate = true
+        )
+
+        ItemUnit(
+            navController = navController,
+            imageId = R.drawable.icons8_male_user_100,
+            text = "Profile",
+            isNavigate = true
+        )
     }
 
     @Composable
     fun ImagesElement(navController: NavController) {
-        Button(
-            onClick = {
-                // do nothing
-        }) {
-            Content(
-                imageId = R.drawable.icons8_image_90,
-                imageContentDesc = "images",
-                text = "Images"
-            )
-        }
+        ItemUnit(
+            navController = navController,
+            imageId = R.drawable.icons8_control_90,
+            text = "Images",
+            isNavigate = false
+        )
 
-        TextButton(
-            onClick = {
-                navController.navigate("home")
-            }) {
-            Content(
-                imageId = R.drawable.icons8_home_90,
-                imageContentDesc = "home",
-                text = "Home"
-            )
-        }
+        ItemUnit(
+            navController = navController,
+            imageId = R.drawable.icons8_home_90,
+            text = "Home",
+            isNavigate = true
+        )
 
-        TextButton(
-            onClick = {
-                navController.navigate("control")
-        }) {
-            Content(
-                imageId = R.drawable.icons8_control_90,
-                imageContentDesc = "control",
-                text = "Control"
-            )
-        }
+        ItemUnit(
+            navController = navController,
+            imageId = R.drawable.icons8_control_90,
+            text = "Control",
+            isNavigate = true
+        )
+
+        ItemUnit(
+            navController = navController,
+            imageId = R.drawable.icons8_male_user_100,
+            text = "Profile",
+            isNavigate = true
+        )
     }
 
     @Composable
     fun ControlElement(navController: NavController) {
-        TextButton(
-            onClick = {
-                navController.navigate("images")
+        ItemUnit(
+            navController = navController,
+            imageId = R.drawable.icons8_control_90,
+            text = "Images",
+            isNavigate = true
+        )
 
-        }) {
-            Content(
-                imageId = R.drawable.icons8_image_90,
-                imageContentDesc = "images",
-                text = "Images"
-            )
-        }
+        ItemUnit(
+            navController = navController,
+            imageId = R.drawable.icons8_home_90,
+            text = "Home",
+            isNavigate = true
+        )
 
-        TextButton(
-            onClick = {
-                navController.navigate("home")
+        ItemUnit(
+            navController = navController,
+            imageId = R.drawable.icons8_control_90,
+            text = "Control",
+            isNavigate = false
+        )
 
-            }) {
-            Content(
-                imageId = R.drawable.icons8_home_90,
-                imageContentDesc = "home",
-                text = "Home"
-            )
-        }
-
-        Button(
-            onClick = {
-                // do nothing
-        }) {
-            Content(
-                imageId = R.drawable.icons8_control_90,
-                imageContentDesc = "control",
-                text = "Control"
-            )
-        }
+        ItemUnit(
+            navController = navController,
+            imageId = R.drawable.icons8_male_user_100,
+            text = "Profile",
+            isNavigate = true
+        )
     }
 
     @Composable
-    fun SettingsElement(navController: NavController) {
+    fun ProfileElement(navController: NavController) {
+        ItemUnit(
+            navController = navController,
+            imageId = R.drawable.icons8_control_90,
+            text = "Control",
+            isNavigate = true
+        )
+
+        ItemUnit(
+            navController = navController,
+            imageId = R.drawable.icons8_home_90,
+            text = "Home",
+            isNavigate = true
+        )
+
+        ItemUnit(
+            navController = navController,
+            imageId = R.drawable.icons8_control_90,
+            text = "Control",
+            isNavigate = true
+        )
+
+        ItemUnit(
+            navController = navController,
+            imageId = R.drawable.icons8_male_user_100,
+            text = "Profile",
+            isNavigate = false
+        )
+    }
+
+    @Composable
+    private fun ItemUnit(
+        navController: NavController,
+        imageId: Int,
+        text: String,
+        isNavigate: Boolean
+    ) {
+        val col = if(isNavigate) Color.Transparent else Color.Cyan
+        val size = 72.dp
         TextButton(
             onClick = {
-                navController.navigate("images")
+                if(isNavigate) navController.navigate(text)
 
-            }) {
+            },
+            colors = ButtonDefaults.buttonColors(col),
+            shape = RoundedCornerShape(10.dp),
+            modifier = Modifier.size(width = size, height = size)
+        ) {
             Content(
-                imageId = R.drawable.icons8_image_90,
-                imageContentDesc = "images",
-                text = "Images"
+                imageId = imageId,
+                imageContentDesc = text,
+                text = text
             )
-        }
-
-        TextButton(
-            onClick = {
-                navController.navigate("home")
-
-            }) {
-            Content(
-                imageId = R.drawable.icons8_home_90,
-                imageContentDesc = "home",
-                text = "Home"
-            )
-        }
-
-        TextButton(
-            onClick = {
-                // do nothing
-            }) {
-            Content(
-                imageId = R.drawable.icons8_control_90,
-                imageContentDesc = "control",
-                text = "Control"
-            )
-        }
-
-        Button(onClick = { TODO("settings not yet implemented") }) {
-
         }
     }
 
