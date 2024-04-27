@@ -10,8 +10,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.sciencewolf.szakdolgozat.components.GetDataFromDatabaseComponent
-import com.sciencewolf.szakdolgozat.components.ShowLastImageComponent
+import com.sciencewolf.szakdolgozat.components.homecomponents.GetDataFromDatabaseComponent
+import com.sciencewolf.szakdolgozat.components.homecomponents.ShowLastImageComponent
 import io.github.jan.supabase.SupabaseClient
 
 open class HomePage {
