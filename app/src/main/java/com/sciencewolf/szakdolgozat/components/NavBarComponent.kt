@@ -2,15 +2,16 @@ package com.sciencewolf.szakdolgozat.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -31,15 +32,24 @@ open class NavBarComponent {
         navController: NavController
     ) {
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(
+                    vertical = 5.dp,
+                    horizontal = 5.dp
+                ),
             verticalArrangement = Arrangement.Bottom,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Divider()
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color.White),
+                    .background(Color.White)
+                    .border(
+                        2.dp,
+                        Color.DarkGray,
+                        RoundedCornerShape(5.dp)
+                    ),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
@@ -47,7 +57,7 @@ open class NavBarComponent {
                     FOCUS_ON.IMAGES -> ImagesElement(navController)
                     FOCUS_ON.HOME -> HomeElement(navController)
                     FOCUS_ON.CONTROL -> ControlElement(navController)
-                    FOCUS_ON.PROFILE -> ProfileElement(navController = navController)
+                    FOCUS_ON.PROFILE -> ProfileElement(navController)
                 }
             }
         }
@@ -57,16 +67,16 @@ open class NavBarComponent {
     fun HomeElement(navController: NavController) {
         ItemUnit(
             navController = navController,
-            imageId = R.drawable.icons8_control_90,
-            text = "Images",
-            isNavigate = true
+            imageId = R.drawable.icons8_home_90,
+            text = "Home",
+            isNavigate = false
         )
 
         ItemUnit(
             navController = navController,
-            imageId = R.drawable.icons8_home_90,
-            text = "Home",
-            isNavigate = false
+            imageId = R.drawable.icons8_image_90,
+            text = "Images",
+            isNavigate = true
         )
 
         ItemUnit(
@@ -88,16 +98,16 @@ open class NavBarComponent {
     fun ImagesElement(navController: NavController) {
         ItemUnit(
             navController = navController,
-            imageId = R.drawable.icons8_control_90,
-            text = "Images",
-            isNavigate = false
+            imageId = R.drawable.icons8_home_90,
+            text = "Home",
+            isNavigate = true
         )
 
         ItemUnit(
             navController = navController,
-            imageId = R.drawable.icons8_home_90,
-            text = "Home",
-            isNavigate = true
+            imageId = R.drawable.icons8_image_90,
+            text = "Images",
+            isNavigate = false
         )
 
         ItemUnit(
@@ -119,15 +129,15 @@ open class NavBarComponent {
     fun ControlElement(navController: NavController) {
         ItemUnit(
             navController = navController,
-            imageId = R.drawable.icons8_control_90,
-            text = "Images",
+            imageId = R.drawable.icons8_home_90,
+            text = "Home",
             isNavigate = true
         )
 
         ItemUnit(
             navController = navController,
-            imageId = R.drawable.icons8_home_90,
-            text = "Home",
+            imageId = R.drawable.icons8_image_90,
+            text = "Images",
             isNavigate = true
         )
 
@@ -150,15 +160,15 @@ open class NavBarComponent {
     fun ProfileElement(navController: NavController) {
         ItemUnit(
             navController = navController,
-            imageId = R.drawable.icons8_control_90,
-            text = "Control",
+            imageId = R.drawable.icons8_home_90,
+            text = "Home",
             isNavigate = true
         )
 
         ItemUnit(
             navController = navController,
-            imageId = R.drawable.icons8_home_90,
-            text = "Home",
+            imageId = R.drawable.icons8_image_90,
+            text = "Images",
             isNavigate = true
         )
 

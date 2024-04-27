@@ -32,7 +32,7 @@ class ShowLastImageComponent {
         modifier: Modifier = Modifier
     ) {
         var it by remember {
-            mutableStateOf<List<BucketItem>>(listOf())
+            mutableStateOf("")
         }
         var url by remember {
             mutableStateOf("")
@@ -55,15 +55,14 @@ class ShowLastImageComponent {
 
         LaunchedEffect(Unit) {
             withContext(Dispatchers.IO) {
-                it = supabaseStorage
+                url = supabaseStorage
                     .storage
                     .from("images")
-                    .list()
+                    .publicUrl("last-image.png")
                 loading = !loading
             }
         }
 
-        println(it)
         Column (
             modifier = Modifier.padding(4.dp)
         ){

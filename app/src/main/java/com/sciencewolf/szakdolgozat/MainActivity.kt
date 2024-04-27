@@ -1,9 +1,12 @@
 package com.sciencewolf.szakdolgozat
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
@@ -14,6 +17,7 @@ import com.sciencewolf.szakdolgozat.pages.ControlPage
 import com.sciencewolf.szakdolgozat.pages.HomePage
 import com.sciencewolf.szakdolgozat.pages.ImagesPage
 import com.sciencewolf.szakdolgozat.pages.ProfilePage
+import com.sciencewolf.szakdolgozat.pages.SettingsPage
 import com.sciencewolf.szakdolgozat.routing.FOCUS_ON
 import com.sciencewolf.szakdolgozat.routing.Routes
 import com.sciencewolf.szakdolgozat.ui.theme.SzakdolgozatTheme
@@ -30,6 +34,7 @@ class MainActivity : ComponentActivity() {
     private val profilePage = ProfilePage()
     private val navBarComponent = NavBarComponent()
 
+    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         val supabase = createSupabaseClient(
             supabaseUrl = resources.getString(R.string.supabaseUrl),
@@ -45,17 +50,19 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SzakdolgozatTheme(darkTheme = true) {
-                Column(
-                    modifier = Modifier
-                ) {
-                    RoutingController(
-                        supabase = supabase,
-                        homePage = homePage,
-                        imagesPage = imagesPage,
-                        controlPage = controlPage,
-                        profilePage = profilePage,
-                        navBarComponent = navBarComponent
-                    )
+                Scaffold {innerPadding ->
+                    Column (
+                        modifier = Modifier.padding(innerPadding)
+                    ){
+                        RoutingController(
+                            supabase = supabase,
+                            homePage = homePage,
+                            imagesPage = imagesPage,
+                            controlPage = controlPage,
+                            profilePage = profilePage,
+                            navBarComponent = navBarComponent
+                        )
+                    }
                 }
             }
         }
@@ -76,17 +83,17 @@ fun RoutingController(
         navController = navController,
         startDestination = Routes.HOME.route
     ) {
-        composable(route = Routes.IMAGES.route) {
-            imagesPage.LoadImagesPage(supabase = supabase)
-            navBarComponent.NavBar(
-                focusOn = FOCUS_ON.IMAGES,
-                navController = navController
-            )
-        }
         composable(route = Routes.HOME.route) {
             homePage.LoadHomePage(supabase = supabase)
             navBarComponent.NavBar(
                 focusOn = FOCUS_ON.HOME,
+                navController = navController
+            )
+        }
+        composable(route = Routes.IMAGES.route) {
+            imagesPage.LoadImagesPage(supabase = supabase)
+            navBarComponent.NavBar(
+                focusOn = FOCUS_ON.IMAGES,
                 navController = navController
             )
         }
@@ -103,6 +110,9 @@ fun RoutingController(
                 focusOn = FOCUS_ON.PROFILE,
                 navController = navController
             )
+        }
+        composable(route = Routes.SETTINGS.route) {
+
         }
     }
 }

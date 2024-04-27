@@ -4,10 +4,10 @@ import androidx.compose.runtime.Composable
 import com.sciencewolf.szakdolgozat.components.ProfileComponent
 
 open class ProfilePage {
-    private val settingsComponent = ProfileComponent()
+    private val profileComponent = ProfileComponent()
 
     @Composable
     fun LoadProfile() {
-        settingsComponent.Profile()
+        profileComponent.Profile()
     }
 }
