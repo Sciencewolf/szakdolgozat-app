@@ -1,17 +1,86 @@
 package com.sciencewolf.szakdolgozat.pages
 
-import androidx.compose.runtime.Composable
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.Divider
+import androidx.compose.material3.Switch
+import androidx.compose.material3.Text
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.sciencewolf.szakdolgozat.components.profilecomponents.GetVersionComponent
-import io.github.jan.supabase.SupabaseClient
+import androidx.compose.ui.unit.dp
+import com.sciencewolf.szakdolgozat.components.controlcomponents.ControlRaspberryPi
 
 open class ControlPage {
-    private val getVersionComponent = GetVersionComponent()
+    private val controlRaspberryPi = ControlRaspberryPi()
+
     @Composable
     fun LoadControlPage(
-        supabase: SupabaseClient,
         modifier: Modifier = Modifier
     ) {
-        getVersionComponent.GetAndDisplayVersion(supabase = supabase)
+        var switchStateRed by remember { mutableStateOf(false) }
+        var switchStateGreen by remember { mutableStateOf(false) }
+        var switchStateBlue by remember { mutableStateOf(false) }
+        var switchStateAll by remember { mutableStateOf(false) }
+
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
+        ) {
+            ControlRow(
+                label = "Red LED",
+                switchState = switchStateRed,
+                onSwitchChange = { switchStateRed = it }
+            )
+            Divider(modifier = Modifier.padding(vertical = 8.dp))
+
+            ControlRow(
+                label = "Green LED",
+                switchState = switchStateGreen,
+                onSwitchChange = { switchStateGreen = it }
+            )
+            Divider(modifier = Modifier.padding(vertical = 8.dp))
+
+            ControlRow(
+                label = "Blue LED",
+                switchState = switchStateBlue,
+                onSwitchChange = { switchStateBlue = it }
+            )
+            Divider(modifier = Modifier.padding(vertical = 8.dp))
+
+            ControlRow(
+                label = "All LED",
+                switchState = switchStateAll,
+                onSwitchChange = { switchStateAll = it }
+            )
+            Divider(modifier = Modifier.padding(vertical = 8.dp))
+
+            controlRaspberryPi.controlLed(ledColor = "Red", on = switchStateRed)
+            controlRaspberryPi.controlLed(ledColor = "Green", on = switchStateGreen)
+            controlRaspberryPi.controlLed(ledColor = "Blue", on = switchStateBlue)
+            controlRaspberryPi.controlLed(ledColor = "All", on = switchStateAll)
+        }
+    }
+
+    @Composable
+    private fun ControlRow(
+        label: String,
+        switchState: Boolean,
+        onSwitchChange: (Boolean) -> Unit,
+        modifier: Modifier = Modifier
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 8.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(text = label)
+            Switch(
+                checked = switchState,
+                onCheckedChange = onSwitchChange
+            )
+        }
     }
 }

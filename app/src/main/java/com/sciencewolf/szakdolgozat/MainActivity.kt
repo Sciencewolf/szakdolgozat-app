@@ -12,12 +12,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.sciencewolf.szakdolgozat.components.NavBarComponent
 import com.sciencewolf.szakdolgozat.pages.ControlPage
 import com.sciencewolf.szakdolgozat.pages.HomePage
-import com.sciencewolf.szakdolgozat.pages.ImagesPage
-import com.sciencewolf.szakdolgozat.pages.ProfilePage
-import com.sciencewolf.szakdolgozat.pages.SettingsPage
 import com.sciencewolf.szakdolgozat.routing.FOCUS_ON
 import com.sciencewolf.szakdolgozat.routing.Routes
 import com.sciencewolf.szakdolgozat.ui.theme.SzakdolgozatTheme
@@ -29,9 +25,7 @@ import kotlin.time.Duration.Companion.seconds
 
 class MainActivity : ComponentActivity() {
     private val homePage = HomePage()
-    private val imagesPage = ImagesPage()
     private val controlPage = ControlPage()
-    private val profilePage = ProfilePage()
     private val navBarComponent = NavBarComponent()
 
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -57,9 +51,7 @@ class MainActivity : ComponentActivity() {
                         RoutingController(
                             supabase = supabase,
                             homePage = homePage,
-                            imagesPage = imagesPage,
                             controlPage = controlPage,
-                            profilePage = profilePage,
                             navBarComponent = navBarComponent
                         )
                     }
@@ -73,9 +65,7 @@ class MainActivity : ComponentActivity() {
 fun RoutingController(
     supabase: SupabaseClient,
     homePage: HomePage,
-    imagesPage: ImagesPage,
     controlPage: ControlPage,
-    profilePage: ProfilePage,
     navBarComponent: NavBarComponent
 ) {
     val navController = rememberNavController()
@@ -90,29 +80,12 @@ fun RoutingController(
                 navController = navController
             )
         }
-        composable(route = Routes.IMAGES.route) {
-            imagesPage.LoadImagesPage(supabase = supabase)
-            navBarComponent.NavBar(
-                focusOn = FOCUS_ON.IMAGES,
-                navController = navController
-            )
-        }
         composable(route = Routes.CONTROL.route) {
-            controlPage.LoadControlPage(supabase = supabase)
+            controlPage.LoadControlPage()
             navBarComponent.NavBar(
                 focusOn = FOCUS_ON.CONTROL,
                 navController = navController
             )
-        }
-        composable(route = Routes.PROFILE.route) {
-            profilePage.LoadProfile()
-            navBarComponent.NavBar(
-                focusOn = FOCUS_ON.PROFILE,
-                navController = navController
-            )
-        }
-        composable(route = Routes.SETTINGS.route) {
-
         }
     }
 }
