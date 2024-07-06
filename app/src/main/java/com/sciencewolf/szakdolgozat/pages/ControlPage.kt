@@ -55,10 +55,10 @@ open class ControlPage {
             )
             Divider(modifier = Modifier.padding(vertical = 8.dp))
 
-            controlRaspberryPi.controlLed(ledColor = "Red", on = switchStateRed)
-            controlRaspberryPi.controlLed(ledColor = "Green", on = switchStateGreen)
-            controlRaspberryPi.controlLed(ledColor = "Blue", on = switchStateBlue)
-            controlRaspberryPi.controlLed(ledColor = "All", on = switchStateAll)
+            controlRaspberryPi.ControlLed(ledColor = "Red", on = switchStateRed)
+            controlRaspberryPi.ControlLed(ledColor = "Green", on = switchStateGreen)
+            controlRaspberryPi.ControlLed(ledColor = "Blue", on = switchStateBlue)
+            controlRaspberryPi.ControlLed(ledColor = "All", on = switchStateAll)
         }
     }
 
