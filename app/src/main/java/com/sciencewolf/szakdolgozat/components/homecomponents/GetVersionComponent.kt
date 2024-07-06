@@ -59,7 +59,7 @@ class GetVersionComponent {
                 key = {data -> data.id}
             ) { data ->
                 version = data.v
-                Text(text = version)
+                Text(text = "v${version}")
                 Divider()
             }
         }

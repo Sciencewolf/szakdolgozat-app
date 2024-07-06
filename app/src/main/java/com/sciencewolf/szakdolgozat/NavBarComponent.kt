@@ -2,7 +2,6 @@ package com.sciencewolf.szakdolgozat
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -22,7 +21,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.sciencewolf.szakdolgozat.routing.FOCUS_ON
-import com.sciencewolf.szakdolgozat.R
 
 open class NavBarComponent {
 
@@ -57,41 +55,41 @@ open class NavBarComponent {
     }
 
     @Composable
-    fun HomeElement(navController: NavController) {
-        ItemUnit(
+    private fun HomeElement(navController: NavController) {
+        Content(
             navController = navController,
-            imageId = R.drawable.icons8_home_90,
+            imageId = R.drawable.icons8_home_96,
             text = "Home",
             isNavigate = false
         )
 
-        ItemUnit(
+        Content(
             navController = navController,
-            imageId = R.drawable.icons8_control_90,
+            imageId = R.drawable.icons8_control_96,
             text = "Control",
             isNavigate = true
         )
     }
 
     @Composable
-    fun ControlElement(navController: NavController) {
-        ItemUnit(
+    private fun ControlElement(navController: NavController) {
+        Content(
             navController = navController,
-            imageId = R.drawable.icons8_home_90,
+            imageId = R.drawable.icons8_home_96,
             text = "Home",
             isNavigate = true
         )
 
-        ItemUnit(
+        Content(
             navController = navController,
-            imageId = R.drawable.icons8_control_90,
+            imageId = R.drawable.icons8_control_96,
             text = "Control",
             isNavigate = false
         )
     }
 
     @Composable
-    private fun ItemUnit(
+    private fun Content(
         navController: NavController,
         imageId: Int,
         text: String,
@@ -108,34 +106,21 @@ open class NavBarComponent {
             shape = RoundedCornerShape(10.dp),
             modifier = Modifier.size(width = size, height = size)
         ) {
-            Content(
-                imageId = imageId,
-                imageContentDesc = text,
-                text = text
-            )
-        }
-    }
-
-    @Composable
-    private fun Content(
-        imageId: Int,
-        imageContentDesc: String,
-        text: String
-    ) {
-        Column(
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Image(
-                painter = painterResource(
-                    id = imageId
-                ),
-                contentDescription = "$imageContentDesc icon"
-            )
-            Text(
-                text = text,
-                color = Color.White
-            )
+            Column(
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Image(
+                    painter = painterResource(
+                        id = imageId
+                    ),
+                    contentDescription = "$text icon"
+                )
+                Text(
+                    text = text,
+                    color = Color.White
+                )
+            }
         }
     }
 }
