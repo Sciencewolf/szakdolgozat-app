@@ -47,6 +47,7 @@ open class NavBarComponent {
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
                 when (focusOn) {
+                    FOCUS_ON.SETTINGS -> SettingsElement(navController)
                     FOCUS_ON.HOME -> HomeElement(navController)
                     FOCUS_ON.CONTROL -> ControlElement(navController)
                 }
@@ -55,7 +56,38 @@ open class NavBarComponent {
     }
 
     @Composable
+    fun SettingsElement(navController: NavController) {
+        Content(
+            navController = navController,
+            imageId = R.drawable.icons8_settings_96,
+            text = "Settings",
+            isNavigate = false
+        )
+
+        Content(
+            navController = navController,
+            imageId = R.drawable.icons8_home_96,
+            text = "Home",
+            isNavigate = true
+        )
+
+        Content(
+            navController = navController,
+            imageId = R.drawable.icons8_control_96,
+            text = "Control",
+            isNavigate = true
+        )
+    }
+
+    @Composable
     private fun HomeElement(navController: NavController) {
+        Content(
+            navController = navController,
+            imageId = R.drawable.icons8_settings_96,
+            text = "Settings",
+            isNavigate = true
+        )
+
         Content(
             navController = navController,
             imageId = R.drawable.icons8_home_96,
@@ -73,6 +105,13 @@ open class NavBarComponent {
 
     @Composable
     private fun ControlElement(navController: NavController) {
+        Content(
+            navController = navController,
+            imageId = R.drawable.icons8_settings_96,
+            text = "Settings",
+            isNavigate = true
+        )
+
         Content(
             navController = navController,
             imageId = R.drawable.icons8_home_96,
@@ -96,7 +135,7 @@ open class NavBarComponent {
         isNavigate: Boolean
     ) {
         val col = if(isNavigate) Color.Transparent else Color.DarkGray
-        val size = 72.dp
+        val size = 80.dp
         TextButton(
             onClick = {
                 if(isNavigate) navController.navigate(text)

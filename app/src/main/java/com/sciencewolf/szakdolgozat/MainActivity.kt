@@ -14,6 +14,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.sciencewolf.szakdolgozat.pages.ControlPage
 import com.sciencewolf.szakdolgozat.pages.HomePage
+import com.sciencewolf.szakdolgozat.pages.SettingsPage
 import com.sciencewolf.szakdolgozat.routing.FOCUS_ON
 import com.sciencewolf.szakdolgozat.routing.Routes
 import com.sciencewolf.szakdolgozat.ui.theme.SzakdolgozatTheme
@@ -26,6 +27,7 @@ import kotlin.time.Duration.Companion.seconds
 class MainActivity : ComponentActivity() {
     private val homePage = HomePage()
     private val controlPage = ControlPage()
+    private val settingsPage = SettingsPage()
     private val navBarComponent = NavBarComponent()
 
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -52,6 +54,7 @@ class MainActivity : ComponentActivity() {
                             supabase = supabase,
                             homePage = homePage,
                             controlPage = controlPage,
+                            settingsPage = settingsPage,
                             navBarComponent = navBarComponent
                         )
                     }
@@ -66,6 +69,7 @@ fun RoutingController(
     supabase: SupabaseClient,
     homePage: HomePage,
     controlPage: ControlPage,
+    settingsPage: SettingsPage,
     navBarComponent: NavBarComponent
 ) {
     val navController = rememberNavController()
@@ -84,6 +88,13 @@ fun RoutingController(
             controlPage.LoadControlPage()
             navBarComponent.NavBar(
                 focusOn = FOCUS_ON.CONTROL,
+                navController = navController
+            )
+        }
+        composable(route = Routes.SETTINGS.route) {
+            settingsPage.LoadSettingsPage()
+            navBarComponent.NavBar(
+                focusOn = FOCUS_ON.SETTINGS,
                 navController = navController
             )
         }
