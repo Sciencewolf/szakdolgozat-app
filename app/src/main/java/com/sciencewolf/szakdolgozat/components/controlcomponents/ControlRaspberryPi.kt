@@ -8,9 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -26,6 +24,15 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
+
+
+object LedOfflineToastManager {
+    var toast by mutableStateOf(false)
+}
+
+object SensorOfflineToastManager {
+    var toast by mutableStateOf(false)
+}
 
 class ControlRaspberryPi {
 
@@ -81,6 +88,17 @@ class ControlRaspberryPi {
                         withContext(Dispatchers.Main) {
                             ledState = response.body()!!
                         }
+                    } else {
+                        withContext(Dispatchers.Main) {
+                            if (!LedOfflineToastManager.toast) {
+                                Toast.makeText(
+                                    context,
+                                    "LED's is offline",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                                LedOfflineToastManager.toast = true
+                            }
+                        }
                     }
                 }
             }
@@ -102,12 +120,20 @@ class ControlRaspberryPi {
                         RetrofitInstance.api.getTemperatureAndHumidity()
                     } catch (ex: HttpException) {
                         withContext(Dispatchers.Main) {
-                            Toast.makeText(context, "http error", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                context,
+                                "http error",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                         return@launch
                     } catch (ex: Exception) {
                         withContext(Dispatchers.Main) {
-                            Toast.makeText(context, "error", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                context,
+                                "error",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                         return@launch
                     }
@@ -115,6 +141,17 @@ class ControlRaspberryPi {
                     if (response.body() != null && response.isSuccessful) {
                         withContext(Dispatchers.Main) {
                             sensorState = response.body()!!
+                        }
+                    } else {
+                        withContext(Dispatchers.Main) {
+                            if (!SensorOfflineToastManager.toast) {
+                                Toast.makeText(
+                                    context,
+                                    "sensor is offline",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                                SensorOfflineToastManager.toast = true
+                            }
                         }
                     }
                 }
@@ -130,7 +167,7 @@ class ControlRaspberryPi {
                     contentDescription = "temp icon"
                 )
                 Spacer(modifier = Modifier.size(8.dp))
-                Text(text = sensorState.temp)
+                Text(text = sensorState.temp.ifEmpty { "undefined" })
             }
             Spacer(modifier = Modifier.size(8.dp))
             Row (
@@ -143,7 +180,7 @@ class ControlRaspberryPi {
                     contentDescription = "hum icon"
                 )
                 Spacer(modifier = Modifier.size(8.dp))
-                Text(text = sensorState.hum)
+                Text(text = sensorState.hum.ifEmpty { "undefined" })
             }
         }
     }

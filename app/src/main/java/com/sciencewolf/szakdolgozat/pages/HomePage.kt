@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.R
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -20,7 +19,6 @@ import com.sciencewolf.szakdolgozat.components.homecomponents.GetDataFromDatabas
 import io.github.jan.supabase.SupabaseClient
 
 open class HomePage {
-    private val getDataFromDatabaseComponent = GetDataFromDatabaseComponent()
     private val showAppVersion = GetVersionComponent()
     private val showTempAndHum = ControlRaspberryPi()
 
@@ -45,8 +43,6 @@ open class HomePage {
                 )
                 showAppVersion.GetAndDisplayVersion(supabase = supabase)
             }
-            // Spacer(modifier = Modifier)
-            // getDataFromDatabaseComponent.GetAndDisplayDataFromDatabase(supabase = supabase)
             Spacer(modifier = Modifier)
             showTempAndHum.GetTemperatureAndHumiditySensor()
         }
