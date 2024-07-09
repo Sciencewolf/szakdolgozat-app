@@ -12,11 +12,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.sciencewolf.szakdolgozat.R
-import com.sciencewolf.szakdolgozat.components.settingscomponent.ContentComponent
+import com.sciencewolf.szakdolgozat.components.settingscomponent.WhatsNewComponent
 import com.sciencewolf.szakdolgozat.components.settingscomponent.CopyrightComponent
+import com.sciencewolf.szakdolgozat.components.settingscomponent.ShareAppComponent
 
 open class SettingsPage {
-    private val contentComponent = ContentComponent()
+    private val contentComponent = WhatsNewComponent()
+    private val shareAppComponent = ShareAppComponent()
     private val copyrightComponent = CopyrightComponent()
 
     @Composable
@@ -43,13 +45,12 @@ open class SettingsPage {
                     modifier = Modifier,
                     icon = R.drawable.icons8_present_96,
                     text = "What's New",
-                    url = "https://github.com/Sciencewolf/szakdolgozat-app/releases/tag/v2024.7.6"
+                    url = "https://github.com/Sciencewolf/szakdolgozat-app/releases/tag/v2024.7.9"
                 )
-                contentComponent.Content(
+                shareAppComponent.ShareApp(
                     modifier = Modifier,
                     icon = R.drawable.icons8_share_96,
-                    text = "Share this App",
-                    url = "https://hippo-immense-plainly.ngrok-free.app/"
+                    text = "Share this App"
                 )
                 copyrightComponent.Copyright(modifier = Modifier)
             }
