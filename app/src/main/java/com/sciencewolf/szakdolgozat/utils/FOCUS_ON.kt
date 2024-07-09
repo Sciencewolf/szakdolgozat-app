@@ -1,4 +1,4 @@
-package com.sciencewolf.szakdolgozat.routing
+package com.sciencewolf.szakdolgozat.utils
 
 enum class FOCUS_ON {
     HOME,

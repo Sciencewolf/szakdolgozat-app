@@ -1,4 +1,4 @@
-package com.sciencewolf.szakdolgozat.routing
+package com.sciencewolf.szakdolgozat.utils
 
 sealed class Routes(val route: String) {
     data object HOME: Routes("Home")

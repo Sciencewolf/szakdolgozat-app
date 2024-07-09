@@ -1,4 +1,4 @@
-package com.sciencewolf.szakdolgozat.components.settingscomponent
+package com.sciencewolf.szakdolgozat.pages.settings
 
 import android.content.Intent
 import android.net.Uri
@@ -53,7 +53,7 @@ open class ShareAppComponent {
         }
 
         val context = LocalContext.current
-        val intent  = Intent(
+        val intent = Intent(
             Intent.ACTION_VIEW,
             Uri.parse(textUrl)
         )
@@ -79,17 +79,22 @@ open class ShareAppComponent {
                     showBottomSheet = !showBottomSheet
                 }, contentPadding = PaddingValues(0.dp)
                 ) {
-                    Text(
-                        text = text,
-                        Modifier.background(Color.Transparent),
-                        color = Color.White
-                    )
+                    Row (
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = text,
+                            Modifier.background(Color.Transparent),
+                            color = Color.White
+                        )
+                        Icon(
+                            painter = painterResource(id = R.drawable.icons8_more_than_30),
+                            contentDescription = "arrow right icon"
+                        )
+                    }
                 }
-
-                Icon(
-                    painter = painterResource(id = R.drawable.icons8_more_than_30),
-                    contentDescription = "arrow right icon"
-                )
             }
         }
         
@@ -108,14 +113,40 @@ open class ShareAppComponent {
                         clipboardManager.setText(AnnotatedString(textUrl))
                         showBottomSheet = !showBottomSheet
                     }) {
-                        Text(text = "Copy")
+                        Row (
+                            modifier = Modifier,
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.Start
+                        ) {
+                            Icon(
+                                painter = painterResource(id = R.drawable.icons8_link_60),
+                                contentDescription = "copy link icon"
+                            )
+                            Text(
+                                text = "Copy Link",
+                                modifier = Modifier.padding(8.dp)
+                            )
+                        }
                     }
 
                     TextButton(onClick = {
                         context.startActivity(intent)
                         showBottomSheet = !showBottomSheet
                     }) {
-                        Text(text = "Open in Browser")
+                        Row (
+                            modifier = Modifier,
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.Start
+                        ) {
+                            Icon(
+                                painter = painterResource(id = R.drawable.icons8_browser_60),
+                                contentDescription = "browser icon"
+                            )
+                            Text(
+                                text = "Open in Browser",
+                                modifier = Modifier.padding(horizontal = 8.dp)
+                            )
+                        }
                     }
                 }
             }

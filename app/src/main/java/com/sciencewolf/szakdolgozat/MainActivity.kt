@@ -12,11 +12,11 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.sciencewolf.szakdolgozat.pages.ControlPage
-import com.sciencewolf.szakdolgozat.pages.HomePage
-import com.sciencewolf.szakdolgozat.pages.SettingsPage
-import com.sciencewolf.szakdolgozat.routing.FOCUS_ON
-import com.sciencewolf.szakdolgozat.routing.Routes
+import com.sciencewolf.szakdolgozat.pages.control.ControlPage
+import com.sciencewolf.szakdolgozat.pages.home.HomePage
+import com.sciencewolf.szakdolgozat.pages.settings.SettingsPage
+import com.sciencewolf.szakdolgozat.utils.FOCUS_ON
+import com.sciencewolf.szakdolgozat.utils.Routes
 import com.sciencewolf.szakdolgozat.ui.theme.SzakdolgozatTheme
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.createSupabaseClient
@@ -65,7 +65,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun RoutingController(
+private fun RoutingController(
     supabase: SupabaseClient,
     homePage: HomePage,
     controlPage: ControlPage,

@@ -1,4 +1,4 @@
-package com.sciencewolf.szakdolgozat.pages
+package com.sciencewolf.szakdolgozat.pages.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,14 +13,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.sciencewolf.szakdolgozat.components.controlcomponents.ControlRaspberryPi
-import com.sciencewolf.szakdolgozat.components.homecomponents.GetVersionComponent
-import com.sciencewolf.szakdolgozat.components.homecomponents.GetDataFromDatabaseComponent
+import com.sciencewolf.szakdolgozat.pages.control.ControlRaspberryPi
 import io.github.jan.supabase.SupabaseClient
 
 open class HomePage {
     private val showAppVersion = GetVersionComponent()
-    private val showTempAndHum = ControlRaspberryPi()
+    private val controlRaspberryPi = ControlRaspberryPi()
 
     @Composable
     fun LoadHomePage(supabase: SupabaseClient) {
@@ -44,7 +42,7 @@ open class HomePage {
                 showAppVersion.GetAndDisplayVersion(supabase = supabase)
             }
             Spacer(modifier = Modifier)
-            showTempAndHum.GetTemperatureAndHumiditySensor()
+            controlRaspberryPi.GetTemperatureAndHumiditySensor()
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.sciencewolf.szakdolgozat.scheme
+package com.sciencewolf.szakdolgozat.utils
 
 data class LEDResponse(
     val status_code: Int = 0,

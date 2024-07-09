@@ -1,4 +1,4 @@
-package com.sciencewolf.szakdolgozat.components.settingscomponent
+package com.sciencewolf.szakdolgozat.pages.settings
 
 import android.content.Intent
 import android.net.Uri
@@ -36,7 +36,7 @@ open class CopyrightComponent {
         Row (
             modifier = Modifier
                 .fillMaxSize()
-                .padding(vertical = 85.dp),
+                .padding(vertical = 50.dp),
             verticalAlignment = Alignment.Bottom,
             horizontalArrangement = Arrangement.Center
         ) {

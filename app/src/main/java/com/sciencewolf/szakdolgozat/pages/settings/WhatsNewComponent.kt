@@ -1,4 +1,4 @@
-package com.sciencewolf.szakdolgozat.components.settingscomponent
+package com.sciencewolf.szakdolgozat.pages.settings
 
 import android.content.Intent
 import android.net.Uri
@@ -60,17 +60,22 @@ open class WhatsNewComponent {
                     context.startActivity(intent)
                 }, contentPadding = PaddingValues(0.dp)
                 ) {
-                    Text(
-                        text = text,
-                        Modifier.background(Color.Transparent),
-                        color = Color.White
-                    )
+                    Row (
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = text,
+                            Modifier.background(Color.Transparent),
+                            color = Color.White
+                        )
+                        Icon(
+                            painter = painterResource(id = R.drawable.icons8_more_than_30),
+                            contentDescription = "arrow right icon"
+                        )
+                    }
                 }
-
-                Icon(
-                    painter = painterResource(id = R.drawable.icons8_more_than_30),
-                    contentDescription = "arrow right icon"
-                )
             }
         }
         Divider(modifier = Modifier.padding(4.dp))

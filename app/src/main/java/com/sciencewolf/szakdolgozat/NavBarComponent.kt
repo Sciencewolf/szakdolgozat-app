@@ -19,8 +19,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.sciencewolf.szakdolgozat.routing.FOCUS_ON
+import com.sciencewolf.szakdolgozat.utils.FOCUS_ON
 
 open class NavBarComponent {
 
@@ -32,10 +33,7 @@ open class NavBarComponent {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(
-                    vertical = 5.dp,
-                    horizontal = 5.dp
-                ),
+                .padding(horizontal = 5.dp),
             verticalArrangement = Arrangement.Bottom,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -59,21 +57,21 @@ open class NavBarComponent {
     fun SettingsElement(navController: NavController) {
         Content(
             navController = navController,
-            imageId = R.drawable.icons8_settings_96,
+            imageId = R.drawable.icons8_settings_60,
             text = "Settings",
             isNavigate = false
         )
 
         Content(
             navController = navController,
-            imageId = R.drawable.icons8_home_96,
+            imageId = R.drawable.icons8_home_60,
             text = "Home",
             isNavigate = true
         )
 
         Content(
             navController = navController,
-            imageId = R.drawable.icons8_control_96,
+            imageId = R.drawable.icons8_control_60,
             text = "Control",
             isNavigate = true
         )
@@ -83,21 +81,21 @@ open class NavBarComponent {
     private fun HomeElement(navController: NavController) {
         Content(
             navController = navController,
-            imageId = R.drawable.icons8_settings_96,
+            imageId = R.drawable.icons8_settings_60,
             text = "Settings",
             isNavigate = true
         )
 
         Content(
             navController = navController,
-            imageId = R.drawable.icons8_home_96,
+            imageId = R.drawable.icons8_home_60,
             text = "Home",
             isNavigate = false
         )
 
         Content(
             navController = navController,
-            imageId = R.drawable.icons8_control_96,
+            imageId = R.drawable.icons8_control_60,
             text = "Control",
             isNavigate = true
         )
@@ -107,21 +105,21 @@ open class NavBarComponent {
     private fun ControlElement(navController: NavController) {
         Content(
             navController = navController,
-            imageId = R.drawable.icons8_settings_96,
+            imageId = R.drawable.icons8_settings_60,
             text = "Settings",
             isNavigate = true
         )
 
         Content(
             navController = navController,
-            imageId = R.drawable.icons8_home_96,
+            imageId = R.drawable.icons8_home_60,
             text = "Home",
             isNavigate = true
         )
 
         Content(
             navController = navController,
-            imageId = R.drawable.icons8_control_96,
+            imageId = R.drawable.icons8_control_60,
             text = "Control",
             isNavigate = false
         )
@@ -134,19 +132,17 @@ open class NavBarComponent {
         text: String,
         isNavigate: Boolean
     ) {
-        val col = if(isNavigate) Color.Transparent else Color.DarkGray
-        val size = 80.dp
+        val buttonColor = if(isNavigate) Color.Transparent else Color.DarkGray
+        val size = 70.dp
         TextButton(
-            onClick = {
-                if(isNavigate) navController.navigate(text)
-
-            },
-            colors = ButtonDefaults.buttonColors(col),
+            onClick = { if(isNavigate) navController.navigate(text) },
             shape = RoundedCornerShape(10.dp),
+            colors = ButtonDefaults.buttonColors(buttonColor),
             modifier = Modifier.size(width = size, height = size)
         ) {
             Column(
-                verticalArrangement = Arrangement.Center,
+                modifier = Modifier,
+                verticalArrangement = Arrangement.SpaceAround,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Image(
@@ -157,7 +153,9 @@ open class NavBarComponent {
                 )
                 Text(
                     text = text,
-                    color = Color.White
+                    color = Color.White,
+                    fontSize = 12.sp,
+                    modifier = Modifier.padding(vertical = 5.dp)
                 )
             }
         }

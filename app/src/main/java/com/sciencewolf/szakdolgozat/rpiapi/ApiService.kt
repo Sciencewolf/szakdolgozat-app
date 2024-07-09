@@ -1,7 +1,7 @@
 package com.sciencewolf.szakdolgozat.rpiapi
 
-import com.sciencewolf.szakdolgozat.scheme.LEDResponse
-import com.sciencewolf.szakdolgozat.scheme.SensorResponse
+import com.sciencewolf.szakdolgozat.utils.LEDResponse
+import com.sciencewolf.szakdolgozat.utils.SensorResponse
 import retrofit2.Response
 import retrofit2.http.GET;
 

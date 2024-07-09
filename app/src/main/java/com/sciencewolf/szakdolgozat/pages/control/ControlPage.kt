@@ -1,4 +1,4 @@
-package com.sciencewolf.szakdolgozat.pages
+package com.sciencewolf.szakdolgozat.pages.control
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Divider
@@ -8,7 +8,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.sciencewolf.szakdolgozat.components.controlcomponents.ControlRaspberryPi
 
 open class ControlPage {
     private val controlRaspberryPi = ControlRaspberryPi()

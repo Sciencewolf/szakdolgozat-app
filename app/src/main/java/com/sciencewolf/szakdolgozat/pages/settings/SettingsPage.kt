@@ -1,4 +1,4 @@
-package com.sciencewolf.szakdolgozat.pages
+package com.sciencewolf.szakdolgozat.pages.settings
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,9 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.sciencewolf.szakdolgozat.R
-import com.sciencewolf.szakdolgozat.components.settingscomponent.WhatsNewComponent
-import com.sciencewolf.szakdolgozat.components.settingscomponent.CopyrightComponent
-import com.sciencewolf.szakdolgozat.components.settingscomponent.ShareAppComponent
 
 open class SettingsPage {
     private val contentComponent = WhatsNewComponent()
@@ -45,7 +42,7 @@ open class SettingsPage {
                     modifier = Modifier,
                     icon = R.drawable.icons8_present_96,
                     text = "What's New",
-                    url = "https://github.com/Sciencewolf/szakdolgozat-app/releases/tag/v2024.7.9"
+                    url = "https://github.com/Sciencewolf/szakdolgozat-app/releases"
                 )
                 shareAppComponent.ShareApp(
                     modifier = Modifier,

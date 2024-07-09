@@ -1,4 +1,4 @@
-package com.sciencewolf.szakdolgozat.components.homecomponents
+package com.sciencewolf.szakdolgozat.pages.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,7 +15,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.sciencewolf.szakdolgozat.scheme.VersionScheme
+import com.sciencewolf.szakdolgozat.utils.VersionScheme
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.Dispatchers

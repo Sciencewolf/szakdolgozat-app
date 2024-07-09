@@ -1,4 +1,4 @@
-package com.sciencewolf.szakdolgozat.scheme
+package com.sciencewolf.szakdolgozat.utils
 
 data class SensorResponse(
     val temp: String = "",

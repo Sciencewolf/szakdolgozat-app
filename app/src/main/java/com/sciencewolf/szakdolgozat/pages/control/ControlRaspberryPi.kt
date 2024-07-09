@@ -1,4 +1,4 @@
-package com.sciencewolf.szakdolgozat.components.controlcomponents
+package com.sciencewolf.szakdolgozat.pages.control
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
@@ -17,9 +17,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.sciencewolf.szakdolgozat.R
-import com.sciencewolf.szakdolgozat.scheme.LEDResponse
+import com.sciencewolf.szakdolgozat.utils.LEDResponse
 import com.sciencewolf.szakdolgozat.rpiapi.RetrofitInstance
-import com.sciencewolf.szakdolgozat.scheme.SensorResponse
+import com.sciencewolf.szakdolgozat.utils.SensorResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -34,7 +34,7 @@ object SensorOfflineToastManager {
     var toast by mutableStateOf(false)
 }
 
-class ControlRaspberryPi {
+open class ControlRaspberryPi {
 
     @Composable
     fun ControlLed(
