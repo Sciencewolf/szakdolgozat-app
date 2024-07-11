@@ -21,9 +21,12 @@ import com.sciencewolf.szakdolgozat.utils.LEDResponse
 import com.sciencewolf.szakdolgozat.rpiapi.RetrofitInstance
 import com.sciencewolf.szakdolgozat.utils.SensorResponse
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
+import kotlin.time.Duration.Companion.minutes
+import kotlin.time.Duration.Companion.seconds
 
 
 object LedOfflineToastManager {
