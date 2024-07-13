@@ -1,4 +1,4 @@
-package com.sciencewolf.szakdolgozat.pages.home
+package com.sciencewolf.szakdolgozat.pages.settings
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -27,15 +27,9 @@ class GetVersionComponent {
         var it by remember {
             mutableStateOf<List<VersionScheme>>(listOf())
         }
-        var loading by remember {
-            mutableStateOf(true)
-        }
+
         var version by remember {
             mutableStateOf("")
-        }
-
-        if (loading) {
-            Text(text = "loading...")
         }
 
         LaunchedEffect(Unit) {
@@ -44,7 +38,6 @@ class GetVersionComponent {
                     .from("version")
                     .select()
                     .decodeList<VersionScheme>()
-                loading = !loading
             }
         }
 

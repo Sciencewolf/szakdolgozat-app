@@ -21,6 +21,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.sciencewolf.szakdolgozat.ui.theme.NavFocusColor
 import com.sciencewolf.szakdolgozat.utils.FOCUS_ON
 
 open class NavBarComponent {
@@ -54,7 +55,7 @@ open class NavBarComponent {
     }
 
     @Composable
-    fun SettingsElement(navController: NavController) {
+    private fun SettingsElement(navController: NavController) {
         Content(
             navController = navController,
             imageId = R.drawable.icons8_settings_60,
@@ -132,7 +133,7 @@ open class NavBarComponent {
         text: String,
         isNavigate: Boolean
     ) {
-        val buttonColor = if(isNavigate) Color.Transparent else Color.DarkGray
+        val buttonColor = if(isNavigate) Color.Transparent else NavFocusColor
         val size = 70.dp
         TextButton(
             onClick = { if(isNavigate) navController.navigate(text) },

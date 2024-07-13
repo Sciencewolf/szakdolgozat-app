@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.sp
 open class CopyrightComponent {
 
     @Composable
-    fun Copyright(modifier: Modifier = Modifier) {
+    fun Content(modifier: Modifier = Modifier) {
         val context = LocalContext.current
         val intent = remember {
             Intent(

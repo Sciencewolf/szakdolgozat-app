@@ -97,7 +97,7 @@ open class ControlRaspberryPi {
                                 Toast.makeText(
                                     context,
                                     "LED's is offline",
-                                    Toast.LENGTH_LONG
+                                    Toast.LENGTH_SHORT
                                 ).show()
                                 LedOfflineToastManager.toast = true
                             }
@@ -151,7 +151,7 @@ open class ControlRaspberryPi {
                                 Toast.makeText(
                                     context,
                                     "sensor is offline",
-                                    Toast.LENGTH_LONG
+                                    Toast.LENGTH_SHORT
                                 ).show()
                                 SensorOfflineToastManager.toast = true
                             }

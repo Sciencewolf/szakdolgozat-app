@@ -17,7 +17,7 @@ import com.sciencewolf.szakdolgozat.pages.home.HomePage
 import com.sciencewolf.szakdolgozat.pages.settings.SettingsPage
 import com.sciencewolf.szakdolgozat.utils.FOCUS_ON
 import com.sciencewolf.szakdolgozat.utils.Routes
-import com.sciencewolf.szakdolgozat.ui.theme.SzakdolgozatTheme
+import com.sciencewolf.szakdolgozat.ui.theme.AppTheme
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.postgrest.Postgrest
@@ -45,7 +45,7 @@ class MainActivity : ComponentActivity() {
 
         super.onCreate(savedInstanceState)
         setContent {
-            SzakdolgozatTheme(darkTheme = true) {
+            AppTheme(darkTheme = true) {
                 Scaffold {innerPadding ->
                     Column (
                         modifier = Modifier.padding(innerPadding)
@@ -78,7 +78,7 @@ private fun RoutingController(
         startDestination = Routes.HOME.route
     ) {
         composable(route = Routes.HOME.route) {
-            homePage.LoadHomePage(supabase = supabase)
+            homePage.LoadHomePage()
             navBarComponent.NavBar(
                 focusOn = FOCUS_ON.HOME,
                 navController = navController
@@ -92,7 +92,7 @@ private fun RoutingController(
             )
         }
         composable(route = Routes.SETTINGS.route) {
-            settingsPage.LoadSettingsPage()
+            settingsPage.LoadSettingsPage(supabase = supabase)
             navBarComponent.NavBar(
                 focusOn = FOCUS_ON.SETTINGS,
                 navController = navController

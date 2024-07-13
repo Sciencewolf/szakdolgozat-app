@@ -36,7 +36,7 @@ open class ShareAppComponent {
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
-    fun ShareApp(
+    fun Content(
         modifier: Modifier = Modifier,
         icon: Int,
         text: String,
