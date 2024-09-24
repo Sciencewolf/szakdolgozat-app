@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.sciencewolf.szakdolgozat.R
 import com.sciencewolf.szakdolgozat.utils.LEDResponse
@@ -167,10 +168,10 @@ open class ControlRaspberryPi {
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.icons8_temperature_100),
-                    contentDescription = "temp icon"
+                    contentDescription = stringResource(R.string.temp_icon_label)
                 )
                 Spacer(modifier = Modifier.size(8.dp))
-                Text(text = sensorState.temp.ifEmpty { "undefined" })
+                Text(text = sensorState.temp.ifEmpty { stringResource(R.string.undefined) })
             }
             Spacer(modifier = Modifier.size(8.dp))
             Row (
@@ -180,10 +181,10 @@ open class ControlRaspberryPi {
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.icons8_humidity_100),
-                    contentDescription = "hum icon"
+                    contentDescription = stringResource(R.string.hum_icon_label)
                 )
                 Spacer(modifier = Modifier.size(8.dp))
-                Text(text = sensorState.hum.ifEmpty { "undefined" })
+                Text(text = sensorState.hum.ifEmpty { stringResource(R.string.undefined) })
             }
         }
     }

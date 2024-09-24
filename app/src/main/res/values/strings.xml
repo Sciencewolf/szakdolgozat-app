@@ -3,4 +3,27 @@
     <string name="supabaseUrl">"https://wwxbtwwiboelmaejmfel.supabase.co"</string>
     <string name="supabaseKey">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind3eGJ0d3dpYm9lbG1hZWptZmVsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTM0NjQ1MjgsImV4cCI6MjAyOTA0MDUyOH0.by0XncWfz9yZThVjJGL-M3Hp9nYpmAcubg0dwUu3Jaw"</string>
     <string name="title_activity_settings">SettingsActivity</string>
+    <string name="red_led">Red LED</string>
+    <string name="green_led">Green LED</string>
+    <string name="blue_led">Blue LED</string>
+    <string name="all_led">All LED</string>
+    <string name="undefined">undefined</string>
+    <string name="hum_icon_label">hum icon</string>
+    <string name="temp_icon_label">temp icon</string>
+    <string name="welcome_back_label">Welcome Back!</string>
+    <string name="github_profile_url">https://github.com/Sciencewolf</string>
+    <string name="dev_name">Márton Áron</string>
+    <string name="app_by">Szakdolgozat App by</string>
+    <string name="share_app_text">Share this App</string>
+    <string name="releases_url">https://github.com/Sciencewolf/szakdolgozat-app/releases</string>
+    <string name="whats_new_text">What\'s New</string>
+    <string name="settings_text">Settings</string>
+    <string name="home_text">Home</string>
+    <string name="control_text">Control</string>
+    <string name="api_url">https://hippo-immense-plainly.ngrok-free.app</string>
+    <string name="arrow_right_label">arrow right icon</string>
+    <string name="copy_link_label">copy link icon</string>
+    <string name="copy_link_text">Copy Link</string>
+    <string name="browser_label">browser icon</string>
+    <string name="open_browser_text">Open in Browser</string>
 </resources>

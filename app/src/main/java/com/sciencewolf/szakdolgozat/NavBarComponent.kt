@@ -18,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -59,22 +60,22 @@ open class NavBarComponent {
         Content(
             navController = navController,
             imageId = R.drawable.icons8_settings_60,
-            text = "Settings",
-            isNavigate = false
+            text = stringResource(R.string.settings_text),
+            isActive = true
         )
 
         Content(
             navController = navController,
             imageId = R.drawable.icons8_home_60,
-            text = "Home",
-            isNavigate = true
+            text = stringResource(R.string.home_text),
+            isActive = false
         )
 
         Content(
             navController = navController,
             imageId = R.drawable.icons8_control_60,
-            text = "Control",
-            isNavigate = true
+            text = stringResource(R.string.control_text),
+            isActive = false
         )
     }
 
@@ -83,22 +84,22 @@ open class NavBarComponent {
         Content(
             navController = navController,
             imageId = R.drawable.icons8_settings_60,
-            text = "Settings",
-            isNavigate = true
+            text = stringResource(R.string.settings_text),
+            isActive = false
         )
 
         Content(
             navController = navController,
             imageId = R.drawable.icons8_home_60,
-            text = "Home",
-            isNavigate = false
+            text = stringResource(R.string.home_text),
+            isActive = true
         )
 
         Content(
             navController = navController,
             imageId = R.drawable.icons8_control_60,
-            text = "Control",
-            isNavigate = true
+            text = stringResource(R.string.control_text),
+            isActive = false
         )
     }
 
@@ -107,22 +108,22 @@ open class NavBarComponent {
         Content(
             navController = navController,
             imageId = R.drawable.icons8_settings_60,
-            text = "Settings",
-            isNavigate = true
+            text = stringResource(R.string.settings_text),
+            isActive = false
         )
 
         Content(
             navController = navController,
             imageId = R.drawable.icons8_home_60,
-            text = "Home",
-            isNavigate = true
+            text = stringResource(R.string.home_text),
+            isActive = false
         )
 
         Content(
             navController = navController,
             imageId = R.drawable.icons8_control_60,
-            text = "Control",
-            isNavigate = false
+            text = stringResource(R.string.control_text),
+            isActive = true
         )
     }
 
@@ -131,12 +132,12 @@ open class NavBarComponent {
         navController: NavController,
         imageId: Int,
         text: String,
-        isNavigate: Boolean
+        isActive: Boolean
     ) {
-        val buttonColor = if(isNavigate) Color.Transparent else NavFocusColor
+        val buttonColor = if(isActive) NavFocusColor else Color.Transparent
         val size = 70.dp
         TextButton(
-            onClick = { if(isNavigate) navController.navigate(text) },
+            onClick = { if(!isActive) navController.navigate(text) },
             shape = RoundedCornerShape(10.dp),
             colors = ButtonDefaults.buttonColors(buttonColor),
             modifier = Modifier.size(width = size, height = size)

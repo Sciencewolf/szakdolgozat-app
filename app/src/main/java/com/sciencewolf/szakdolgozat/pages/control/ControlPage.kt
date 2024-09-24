@@ -7,7 +7,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.sciencewolf.szakdolgozat.R
 
 open class ControlPage {
     private val controlRaspberryPi = ControlRaspberryPi()
@@ -27,28 +29,28 @@ open class ControlPage {
                 .padding(16.dp)
         ) {
             ControlRow(
-                label = "Red LED",
+                label = stringResource(R.string.red_led),
                 switchState = switchStateRed,
                 onSwitchChange = { switchStateRed = it }
             )
             Divider(modifier = Modifier.padding(vertical = 8.dp))
 
             ControlRow(
-                label = "Green LED",
+                label = stringResource(R.string.green_led),
                 switchState = switchStateGreen,
                 onSwitchChange = { switchStateGreen = it }
             )
             Divider(modifier = Modifier.padding(vertical = 8.dp))
 
             ControlRow(
-                label = "Blue LED",
+                label = stringResource(R.string.blue_led),
                 switchState = switchStateBlue,
                 onSwitchChange = { switchStateBlue = it }
             )
             Divider(modifier = Modifier.padding(vertical = 8.dp))
 
             ControlRow(
-                label = "All LED",
+                label = stringResource(R.string.all_led),
                 switchState = switchStateAll,
                 onSwitchChange = { switchStateAll = it }
             )

@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.sciencewolf.szakdolgozat.R
@@ -39,7 +40,7 @@ open class SettingsPage {
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = "Settings",
+                    text = stringResource(R.string.settings_text),
                     fontSize = 32.sp,
                     modifier = Modifier.padding(horizontal = 16.dp)
                 )
@@ -54,13 +55,13 @@ open class SettingsPage {
                 whatsNewComponent.Content(
                     modifier = Modifier,
                     icon = R.drawable.icons8_present_96,
-                    text = "What's New",
-                    url = "https://github.com/Sciencewolf/szakdolgozat-app/releases"
+                    text = stringResource(R.string.whats_new_text),
+                    url = stringResource(R.string.releases_url)
                 )
                 shareAppComponent.Content(
                     modifier = Modifier,
                     icon = R.drawable.icons8_share_96,
-                    text = "Share this App"
+                    text = stringResource(R.string.share_app_text)
                 )
                 copyrightComponent.Content(modifier = Modifier)
             }

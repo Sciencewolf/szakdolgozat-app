@@ -28,9 +28,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
 import com.sciencewolf.szakdolgozat.R
+import com.sciencewolf.szakdolgozat.rpiapi.BaseUrl
 
 open class ShareAppComponent {
 
@@ -47,7 +49,7 @@ open class ShareAppComponent {
 
         val textUrl by remember {
             mutableStateOf(
-                Uri.parse("https://hippo-immense-plainly.ngrok-free.app")
+                Uri.parse(BaseUrl.API_URL)
                     .toString()
             )
         }
@@ -91,7 +93,7 @@ open class ShareAppComponent {
                         )
                         Icon(
                             painter = painterResource(id = R.drawable.icons8_more_than_30),
-                            contentDescription = "arrow right icon"
+                            contentDescription = stringResource(R.string.arrow_right_label)
                         )
                     }
                 }
@@ -120,10 +122,10 @@ open class ShareAppComponent {
                         ) {
                             Icon(
                                 painter = painterResource(id = R.drawable.icons8_link_60),
-                                contentDescription = "copy link icon"
+                                contentDescription = stringResource(R.string.copy_link_label)
                             )
                             Text(
-                                text = "Copy Link",
+                                text = stringResource(R.string.copy_link_text),
                                 modifier = Modifier.padding(8.dp)
                             )
                         }
@@ -140,10 +142,10 @@ open class ShareAppComponent {
                         ) {
                             Icon(
                                 painter = painterResource(id = R.drawable.icons8_browser_60),
-                                contentDescription = "browser icon"
+                                contentDescription = stringResource(R.string.browser_label)
                             )
                             Text(
-                                text = "Open in Browser",
+                                text = stringResource(R.string.open_browser_text),
                                 modifier = Modifier.padding(horizontal = 8.dp)
                             )
                         }

@@ -46,10 +46,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             AppTheme(darkTheme = true) {
-                Scaffold {innerPadding ->
-                    Column (
+                Scaffold { innerPadding ->
+                    Column(
                         modifier = Modifier.padding(innerPadding)
-                    ){
+                    ) {
                         RoutingController(
                             supabase = supabase,
                             homePage = homePage,

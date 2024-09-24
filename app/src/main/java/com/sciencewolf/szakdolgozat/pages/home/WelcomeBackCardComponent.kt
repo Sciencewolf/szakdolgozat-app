@@ -14,8 +14,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.sciencewolf.szakdolgozat.R
 import com.sciencewolf.szakdolgozat.pages.control.ControlRaspberryPi
 import com.sciencewolf.szakdolgozat.ui.theme.CardLightBlueColor
 
@@ -43,7 +45,7 @@ open class WelcomeBackCardComponent {
                     horizontalArrangement = Arrangement.SpaceBetween
                 ){
                     Text(
-                        text = "Welcome Back!",
+                        text = stringResource(R.string.welcome_back_label),
                         fontSize = 30.sp,
                         modifier = Modifier.padding(12.dp)
                     )

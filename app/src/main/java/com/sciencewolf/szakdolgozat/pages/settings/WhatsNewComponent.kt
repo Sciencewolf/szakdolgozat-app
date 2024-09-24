@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.sciencewolf.szakdolgozat.R
 
@@ -72,7 +73,7 @@ open class WhatsNewComponent {
                         )
                         Icon(
                             painter = painterResource(id = R.drawable.icons8_more_than_30),
-                            contentDescription = "arrow right icon"
+                            contentDescription = stringResource(R.string.arrow_right_label)
                         )
                     }
                 }

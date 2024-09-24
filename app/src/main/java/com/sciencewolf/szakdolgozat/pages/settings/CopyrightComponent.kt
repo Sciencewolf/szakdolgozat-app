@@ -16,10 +16,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.sciencewolf.szakdolgozat.R
+import com.sciencewolf.szakdolgozat.rpiapi.BaseUrl
 
 open class CopyrightComponent {
 
@@ -29,7 +32,7 @@ open class CopyrightComponent {
         val intent = remember {
             Intent(
                 Intent.ACTION_VIEW,
-                Uri.parse("https://github.com/Sciencewolf")
+                Uri.parse(BaseUrl.GITHUB_PROFILE_URL)
             )
         }
 
@@ -46,7 +49,7 @@ open class CopyrightComponent {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Szakdolgozat App by",
+                    text = stringResource(R.string.app_by),
                     modifier = Modifier.padding(horizontal = 4.dp),
                     color = Color.Gray,
                     fontSize = 14.sp
@@ -55,7 +58,7 @@ open class CopyrightComponent {
                     context.startActivity(intent)
                 }, contentPadding = PaddingValues(0.dp)) {
                     Text(
-                        text = "Márton Áron",
+                        text = stringResource(R.string.dev_name),
                         color = Color.Gray,
                         modifier = Modifier.background(Color.Transparent),
                         style = TextStyle(textDecoration = TextDecoration.Underline),
