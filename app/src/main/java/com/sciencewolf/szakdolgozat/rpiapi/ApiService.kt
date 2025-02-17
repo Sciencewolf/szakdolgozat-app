@@ -1,35 +1,58 @@
 package com.sciencewolf.szakdolgozat.rpiapi
 
-import com.sciencewolf.szakdolgozat.utils.LEDResponse
+import com.sciencewolf.szakdolgozat.utils.LidResponse
+import com.sciencewolf.szakdolgozat.utils.ApiOkResponse
 import com.sciencewolf.szakdolgozat.utils.SensorResponse
 import retrofit2.Response
 import retrofit2.http.GET;
+import retrofit2.http.Query
 
 interface ApiService {
     @GET("/get-temp-hum")
     suspend fun getTemperatureAndHumidity(): Response<SensorResponse>
 
-    @GET("/on-red-led")
-    suspend fun onRedLed(): Response<LEDResponse>
+    @GET("/get-lid-status")
+    suspend fun getLidStatus(): Response<LidResponse>
 
-    @GET("/off-red-led")
-    suspend fun offRedLed(): Response<LEDResponse>
+    @GET("/prepare-hatching")
+    suspend fun prepareHatching(): Response<ApiOkResponse>
 
-    @GET("/on-green-led")
-    suspend fun onGreenLed(): Response<LEDResponse>
+    @GET("/start-hatching")
+    suspend fun startHatching(): Response<ApiOkResponse>
 
-    @GET("/off-green-led")
-    suspend fun offGreenLen(): Response<LEDResponse>
+    @GET("/stop-hatching")
+    suspend fun stopHatching(): Response<ApiOkResponse>
 
-    @GET("/on-blue-led")
-    suspend fun onBlueLed(): Response<LEDResponse>
+    @GET("/set-temp")
+    suspend fun setTemperature(@Query("t") temperature: Float): Response<ApiOkResponse>
 
-    @GET("/off-blue-led")
-    suspend fun offBlueLed(): Response<LEDResponse>
+    @GET("/on-cooler")
+    suspend fun onCooler(): Response<ApiOkResponse>
 
-    @GET("/on-all-led")
-    suspend fun onAllLed(): Response<LEDResponse>
+    @GET("/off-cooler")
+    suspend fun offCooler(): Response<ApiOkResponse>
 
-    @GET("/off-all-led")
-    suspend fun offAllLed(): Response<LEDResponse>
+    @GET("/on-heating-element")
+    suspend fun onHeatingElement(): Response<ApiOkResponse>
+
+    @GET("/off-heating-element")
+    suspend fun offHeatingElement(): Response<ApiOkResponse>
+
+    @GET("/rotate-eggs")
+    suspend fun rotateEggs(): Response<ApiOkResponse>
+
+    @GET("/get-last-eggs-rotation")
+    suspend fun getLastEggsRotation(): Response<ApiOkResponse>
+
+    @GET("/overall")
+    suspend fun getOverall(): Response<ApiOkResponse>
+
+    @GET("/health")
+    suspend fun getHealth(): Response<ApiOkResponse>
+
+    @GET("/alive")
+    suspend fun getAlive(): Response<ApiOkResponse>
+
+    @GET("/shutdown")
+    suspend fun shutdown(): Response<ApiOkResponse>
 }

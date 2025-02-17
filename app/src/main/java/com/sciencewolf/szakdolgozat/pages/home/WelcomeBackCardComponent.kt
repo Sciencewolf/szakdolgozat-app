@@ -30,7 +30,7 @@ open class WelcomeBackCardComponent {
             colors = CardDefaults.cardColors(
                 containerColor = CardLightBlueColor
             ),
-            modifier = Modifier.size(width = 380.dp, height = 180.dp)
+            modifier = Modifier.size(width = 380.dp, height = 300.dp)
         ) {
             Column(
                 modifier = Modifier
@@ -52,6 +52,8 @@ open class WelcomeBackCardComponent {
                 }
                 Spacer(modifier = Modifier)
                 controlRaspberryPi.GetTemperatureAndHumiditySensor()
+                Spacer(modifier = Modifier)
+                controlRaspberryPi.GetLidStatus()
             }
         }
     }

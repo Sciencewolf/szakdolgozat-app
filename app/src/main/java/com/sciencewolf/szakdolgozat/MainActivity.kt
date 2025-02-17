@@ -29,10 +29,11 @@ class MainActivity : ComponentActivity() {
     private val controlPage = ControlPage()
     private val settingsPage = SettingsPage()
     private val navBarComponent = NavBarComponent()
+    private var supabase: SupabaseClient? = null;
 
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
-        val supabase = createSupabaseClient(
+        supabase = createSupabaseClient(
             supabaseUrl = resources.getString(R.string.supabaseUrl),
             supabaseKey = resources.getString(R.string.supabaseKey)
 
@@ -44,6 +45,7 @@ class MainActivity : ComponentActivity() {
         }
 
         super.onCreate(savedInstanceState)
+
         setContent {
             AppTheme(darkTheme = true) {
                 Scaffold { innerPadding ->
@@ -51,7 +53,7 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.padding(innerPadding)
                     ) {
                         RoutingController(
-                            supabase = supabase,
+                            supabase = supabase ?: return@Scaffold,
                             homePage = homePage,
                             controlPage = controlPage,
                             settingsPage = settingsPage,
@@ -75,7 +77,7 @@ private fun RoutingController(
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = Routes.HOME.route
+        startDestination = Routes.CONTROL.route
     ) {
         composable(route = Routes.HOME.route) {
             homePage.LoadHomePage()
