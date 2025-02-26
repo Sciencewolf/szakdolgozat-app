@@ -50,7 +50,7 @@ open class ControlPage {
             controlRaspberryPi.HeatingElement(on=switchStateHeatingElement)
             Column {
                 controlRaspberryPi.GetLidStatus()
-                controlRaspberryPi.GetTemperatureAndHumiditySensor()
+                controlRaspberryPi.GetTemperatureAndHumiditySensor(enableSlider = true)
             }
         }
     }

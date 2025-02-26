@@ -23,8 +23,20 @@ interface ApiService {
     @GET("/stop-hatching")
     suspend fun stopHatching(): Response<ApiOkResponse>
 
+    @GET("/is-hatching")
+    suspend fun isHatching(): Response<ApiOkResponse>
+
     @GET("/set-temp")
     suspend fun setTemperature(@Query("t") temperature: Float): Response<ApiOkResponse>
+
+    @GET("/led-indication")
+    suspend fun ledIndication(@Query("val") value: String): Response<ApiOkResponse>
+
+    @GET("/get-day")
+    suspend fun getDay(): Response<ApiOkResponse>
+
+    @GET("/get-stats")
+    suspend fun getStats(@Query("day") day: String): Response<ApiOkResponse>
 
     @GET("/on-cooler")
     suspend fun onCooler(): Response<ApiOkResponse>

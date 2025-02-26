@@ -68,19 +68,17 @@ open class ControlRaspberryPi {
      */
 
     @Composable
-    fun GetTemperatureAndHumiditySensor(modifier: Modifier = Modifier) {
+    fun GetTemperatureAndHumiditySensor(modifier: Modifier = Modifier, enableSlider: Boolean = false) {
         val context = LocalContext.current
         var sensorState by remember { mutableStateOf(SensorResponse()) }
         var sliderPosition by remember { mutableFloatStateOf(0f) }
-        var isStopped by remember { mutableStateOf(false) } // Flag to stop API calls
-        var lastHumidity by remember { mutableStateOf("") } // Store last fetched humidity
-        var manualTemperature by remember { mutableStateOf("") } // Store manually adjusted temperature
-        var showButtons by remember { mutableStateOf(false) } // Show buttons when slider moves
+        var isStopped by remember { mutableStateOf(false) }
+        var manualTemperature by remember { mutableStateOf("") }
+        var showButtons by remember { mutableStateOf(false) }
 
         val redRange = 39.0f..45.0f
-        val scope = rememberCoroutineScope() // ✅ Use this for launching coroutines in Compose
+        val scope = rememberCoroutineScope()
 
-        // Fetch API data until stopped
         LaunchedEffect(isStopped) {
             while (!isStopped) {
                 fetchApiResponse(
@@ -88,21 +86,17 @@ open class ControlRaspberryPi {
                     onSuccess = {
                         sensorState = it
                         sliderPosition = it.temp.split(" ")[0].toFloat()
-                        lastHumidity = it.hum // Store API humidity before stopping
                     },
                     onError = {
-                        if (!SensorOfflineToastManager.toast) {
-                            showToast(context, "Sensor is offline")
-                            SensorOfflineToastManager.toast = true
-                        }
+                        showToast(context, "Sensor is offline")
                     },
                     context = context
                 )
-                delay(5000) // 5 sec refresh
+                delay(5000)
             }
         }
 
-        Column(modifier = Modifier) {
+        Column(modifier = modifier) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Start
@@ -112,70 +106,66 @@ open class ControlRaspberryPi {
                     contentDescription = stringResource(R.string.temp_icon_label)
                 )
 
-                // Display manually adjusted temperature if API is stopped, else API temperature
-                Text(text = if (isStopped) manualTemperature else sensorState.temp.ifEmpty {
-                    stringResource(
-                        R.string.undefined
-                    )
-                })
+                Text(text = if (isStopped) manualTemperature else sensorState.temp.ifEmpty { stringResource(R.string.undefined) })
 
-                Slider(
-                    value = sliderPosition,
-                    onValueChange = {
-                        sliderPosition = it  // Update the displayed value
-                        isStopped = true     // Stop the API call
-                        manualTemperature = String.format(
-                            "%.1f°C",
-                            it
-                        ) // Store manually adjusted temperature with one decimal place
-                        showButtons = true // Show buttons when slider moves
-                    },
-                    valueRange = 15.0f..45.0f,
-                    steps = ((45 - 15) * 10 - 1).toInt(), // Step size = 0.1
-                    colors = SliderDefaults.colors(
-                        thumbColor = Color.White,
-                        activeTrackColor = if (sliderPosition in redRange) Color.Red else Color.Green
+                Spacer(modifier = Modifier.width(8.dp))
+
+                if (enableSlider) {
+                    Slider(
+                        value = sliderPosition,
+                        onValueChange = {
+                            sliderPosition = it
+                            isStopped = true
+                            manualTemperature = String.format("%.1f°C", it)
+                            showButtons = true
+                        },
+                        valueRange = 15.0f..45.0f,
+                        steps = ((45 - 15) * 10 - 1).toInt(),
+                        colors = SliderDefaults.colors(
+                            thumbColor = Color.White,
+                            activeTrackColor = if (sliderPosition in redRange) Color.Red else Color.Green
+                        )
                     )
+                }
+
+                Image(
+                    painter = painterResource(id = R.drawable.icons8_humidity_100),
+                    contentDescription = stringResource(R.string.hum_icon_label)
                 )
-
-                // Show the humidity from API before stopping OR the latest API humidity
                 Text(text = sensorState.hum.ifEmpty { stringResource(R.string.undefined) })
             }
 
-            if (showButtons) {
+            if (enableSlider && showButtons) {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceEvenly
+                    horizontalArrangement = Arrangement.End
                 ) {
                     TextButton(
                         onClick = {
-                            isStopped = false // Restart fetching data
-                            showButtons = false // Hide buttons
+                            isStopped = false
+                            showButtons = false
                             scope.launch {
                                 try {
                                     val response = RetrofitInstance.api.setTemperature(sliderPosition)
-                                    println(response)
-                                    if (response.isSuccessful && response.body() != null) {
+                                    if (response.isSuccessful) {
                                         showToast(context, "Temperature set to ${sliderPosition}°C")
                                         showButtons = false
                                     } else {
-                                        val errorMsg = response.errorBody()?.string() ?: "Unknown error"
-                                        showToast(context, "Failed to set temperature: $errorMsg")
+                                        showToast(context, "Failed to set temperature")
                                     }
                                 } catch (e: Exception) {
                                     showToast(context, "Error setting temperature: ${e.message}")
                                 }
                             }
                         }
-
                     ) {
-                        Text("Set Temperature")
+                        Text("Ok")
                     }
 
                     TextButton(
                         onClick = {
-                            isStopped = false // Restart fetching data
-                            showButtons = false // Hide buttons
+                            isStopped = false
+                            showButtons = false
                         }
                     ) {
                         Text("Cancel")
@@ -184,6 +174,7 @@ open class ControlRaspberryPi {
             }
         }
     }
+
 
     /**
      * Fetches and displays lid status.
@@ -206,11 +197,11 @@ open class ControlRaspberryPi {
                     },
                     context = context
                 )
-                delay(2000)
+                delay(10_000)
             }
         }
 
-        Row(modifier = Modifier) {
+        Row(modifier = Modifier.padding(8.dp)) {
             Text(text = "Lid is: " + lidState.value.lid.ifEmpty { stringResource(R.string.undefined) })
         }
     }

@@ -1,1 +1,3 @@
 # Szakdolgozat App 
+
+onStart() -> 
