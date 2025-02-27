@@ -14,6 +14,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.motionEventSpy
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -26,34 +28,40 @@ open class WelcomeBackCardComponent {
 
     @Composable
     fun ShowCard(modifier: Modifier = Modifier) {
+        Row (
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ){
+            Text(
+                text = stringResource(R.string.welcome_back_label),
+                fontSize = 30.sp,
+                modifier = Modifier.padding(10.dp)
+            )
+        }
+
         Card (
             colors = CardDefaults.cardColors(
-                containerColor = CardLightBlueColor
+                containerColor = Color(0xFF2B2B2B)
             ),
-            modifier = Modifier.size(width = 380.dp, height = 200.dp)
+            modifier = Modifier.size(width = 380.dp, height = 160.dp)
         ) {
             Column(
                 modifier = Modifier
                     .fillMaxHeight()
                     .padding(4.dp)
             ) {
-                Row (
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(8.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ){
-                    Text(
-                        text = stringResource(R.string.welcome_back_label),
-                        fontSize = 30.sp,
-                        modifier = Modifier.padding(12.dp)
-                    )
-                }
+                Spacer(modifier = Modifier.padding(vertical = 5.dp))
+                controlRaspberryPi.GetTemperatureAndHumiditySensor(
+                    enableSlider = false,
+                    modifier = Modifier.padding(horizontal = 8.dp)
+                )
+                Spacer(modifier = Modifier.padding(vertical = 5.dp))
+                controlRaspberryPi.GetLidStatus(modifier = Modifier.padding(horizontal = 8.dp))
                 Spacer(modifier = Modifier)
-                controlRaspberryPi.GetTemperatureAndHumiditySensor(enableSlider = false)
-                Spacer(modifier = Modifier)
-                controlRaspberryPi.GetLidStatus()
+                controlRaspberryPi.GetLastEggsRotation(modifier = Modifier.padding(horizontal = 8.dp))
             }
         }
     }

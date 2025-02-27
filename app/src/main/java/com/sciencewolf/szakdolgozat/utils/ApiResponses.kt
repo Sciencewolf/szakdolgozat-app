@@ -9,6 +9,24 @@ data class SensorResponse(
     val timestamp: String = ""
 )
 
+data class StatsResponse(
+    val other: Any?,
+    val response: List<StatsData>,
+    val status_code: Int,
+    val timestamp: String
+)
+
+data class StatsData(
+    val data: SensorData,
+    val timestamp: String
+)
+
+data class SensorData(
+    val temp: String,
+    val hum: String
+)
+
+
 /**
  * LidResponse data class
  */

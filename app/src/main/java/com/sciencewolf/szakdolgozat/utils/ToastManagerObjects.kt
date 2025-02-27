@@ -20,6 +20,10 @@ object HeatingElementOfflineToastManager {
     var toast by mutableStateOf(false)
 }
 
+object OtherOfflineToastManager {
+    var toast by mutableStateOf(false)
+}
+
 object RotateEggsOfflineToastManager {
     var toast by mutableStateOf(false)
 }

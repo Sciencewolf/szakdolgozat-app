@@ -13,6 +13,17 @@
     <string name="share_app_text">Share this App</string>
     <string name="releases_url">https://github.com/Sciencewolf/szakdolgozat-app/releases</string>
     <string name="whats_new_text">What\'s New</string>
+    <string name="choose_lang_text">Choose Language</string>
+    <string name="tips_text">Tips</string>
+    <string name="hatching_tips_1">Care and incubation of hatching eggs</string>
+    <string name="hatching_tips_1_url">https://www.thepoultrysite.com/articles/care-and-incubation-of-hatching-eggs</string>
+    <string name="hatching_tips_1_image_url">https://thehomesteadingrd.com/wp-content/uploads/2023/03/Hatching-chicken-eggs-cover.jpg</string>
+    <string name="hatching_tips_2">Hatching Eggs at Home</string>
+    <string name="hatching_tips_2_url">https://www.purinamills.com/chicken-feed/education/detail/hatching-eggs-at-home-a-21-day-guide-for-baby-chicks</string>
+    <string name="hatching_tips_2_image_url">https://poultrykeeper.com/wp-content/uploads/2021/06/How-to-help-a-chick-hatch_1200x750.jpg</string>
+    <string name="hatching_tips_3">Hatching Chicken Eggs: The Ultimate Beginner’s Guide</string>
+    <string name="hatching_tips_3_url">https://thehomesteadingrd.com/hatching-chicken-eggs/</string>
+    <string name="hatching_tips_3_image_url">https://cdn.globalagmedia.com/poultry/articles/University/HatchingChicks_UMD.JPG</string>
     <string name="settings_text">Settings</string>
     <string name="home_text">Home</string>
     <string name="control_text">Control</string>

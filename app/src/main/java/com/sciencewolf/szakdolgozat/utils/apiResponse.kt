@@ -7,6 +7,20 @@ data class ApiOkResponse(
     val other: List<String> = listOf()
 )
 
+data class ApiOkResponseList<T>(
+    val statusCode: Int = 0,
+    val response: List<T> = listOf(),
+    val timestamp: String = "",
+    val other: List<String> = listOf()
+)
+
+data class ApiOkResponseL (
+    val statusCode: Int = 0,
+    val response: List<String> = listOf(),
+    val timestamp: String = "",
+    val other: List<String> = listOf()
+)
+
 data class ApiNotFoundResponse(
     val statusCode: Int = 0,
     val response: String = "",
