@@ -14,6 +14,10 @@ out/
 # App Release Files
 app/release/*
 
+!app/releases/
+!app/releases/*
+
+
 #  Uncomment the following line in case you need and you don't have the release build type files in your app
 # release/
 # Gradle files
