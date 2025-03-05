@@ -31,6 +31,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.sciencewolf.szakdolgozat.R
+import com.sciencewolf.szakdolgozat.pages.home.formatDateString
 import com.sciencewolf.szakdolgozat.rpiapi.RetrofitInstance
 import com.sciencewolf.szakdolgozat.utils.*
 import kotlinx.coroutines.*
@@ -282,6 +283,8 @@ open class ControlRaspberryPi {
         val context = LocalContext.current
         val lastTime = remember { mutableStateOf(ApiOkResponse()) }
 
+        val formattedDay = formatDateString(lastTime.value.response, "yyyy MMMM dd HH:mm")
+
         LaunchedEffect(Unit) {
             while (true) {
                 fetchApiResponse(
@@ -300,7 +303,7 @@ open class ControlRaspberryPi {
         }
 
         Row(modifier = Modifier.padding(18.dp)) {
-            Text(text = "Last egg rotation: " + lastTime.value.response.ifEmpty { stringResource(R.string.undefined) })
+            Text(text = "Last egg rotation: " + formattedDay.ifEmpty { stringResource(R.string.undefined) })
         }
     }
 
@@ -594,7 +597,7 @@ open class ControlRaspberryPi {
                 AlertDialog(
                     onDismissRequest = { showDialog = false },
                     title = { Text(text = "Stop Hatching") },
-                    text = { Text(text = "Are you sure you want to stop hatching?") },
+                    text = { Text(text = stringResource(R.string.confirm_hatching_stop_text)) },
                     confirmButton = {
                         TextButton(
                             onClick = {

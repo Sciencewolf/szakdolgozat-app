@@ -14,6 +14,8 @@
     <string name="releases_url">https://github.com/Sciencewolf/szakdolgozat-app/releases</string>
     <string name="whats_new_text">What\'s New</string>
     <string name="choose_lang_text">Choose Language</string>
+    <string name="loading_data_text">Loading data...</string>
+    <string name="confirm_hatching_stop_text">Are you sure you want to stop hatching?</string>
     <string name="tips_text">Tips</string>
     <string name="hatching_tips_1">Care and incubation of hatching eggs</string>
     <string name="hatching_tips_1_url">https://www.thepoultrysite.com/articles/care-and-incubation-of-hatching-eggs</string>

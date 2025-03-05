@@ -40,7 +40,7 @@ interface ApiService {
     suspend fun getDay(): Response<ApiOkResponse>
 
     @GET("/get-stats")
-    suspend fun getStats(@Query("day") day: String): Call<StatsResponse>
+    suspend fun getStats(@Query("day") day: String): Response<StatsResponse>
 
     @GET("/on-cooler")
     suspend fun onCooler(): Response<ApiOkResponse>

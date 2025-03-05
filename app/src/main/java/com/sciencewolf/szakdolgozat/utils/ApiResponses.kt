@@ -10,8 +10,8 @@ data class SensorResponse(
 )
 
 data class StatsResponse(
-    val other: Any?,
-    val response: List<StatsData>,
+    val other: String?,
+    val response: List<StatsData> = emptyList(),
     val status_code: Int,
     val timestamp: String
 )

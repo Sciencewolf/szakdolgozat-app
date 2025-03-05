@@ -15,6 +15,8 @@
     <string name="whats_new_text">Újdonságok</string>
     <string name="choose_lang_text">Válassz Nyelvet</string>
     <string name="tips_text">Tippek</string>
+    <string name="loading_data_text">Betöltés...</string>
+    <string name="confirm_hatching_stop_text">Biztos benne?</string>
     <string name="hatching_tips_1">Care and incubation of hatching eggs</string>
     <string name="hatching_tips_1_url">https://www.thepoultrysite.com/articles/care-and-incubation-of-hatching-eggs</string>
     <string name="hatching_tips_1_image_url">https://thehomesteadingrd.com/wp-content/uploads/2023/03/Hatching-chicken-eggs-cover.jpg</string>
