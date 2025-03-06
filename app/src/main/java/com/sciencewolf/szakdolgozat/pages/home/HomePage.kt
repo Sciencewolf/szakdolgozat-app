@@ -13,7 +13,9 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Divider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,8 +23,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.sciencewolf.szakdolgozat.R
 import com.sciencewolf.szakdolgozat.pages.control.ControlRaspberryPi
+import com.sciencewolf.szakdolgozat.utils.Routes
 import java.time.LocalDate
 
 open class HomePage {
@@ -30,10 +34,10 @@ open class HomePage {
     private val getStarted = GetStarted()
     private val controlRaspberryPi = ControlRaspberryPi()
 
-    private val yesterday = LocalDate.now().minusDays(1)
+    private val today = LocalDate.now()
 
     @Composable
-    fun LoadHomePage() {
+    fun LoadHomePage(navController: NavController) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -80,9 +84,40 @@ open class HomePage {
             Spacer(modifier = Modifier.padding(vertical = 8.dp))
             Divider(modifier = Modifier)
 
-            Column {
-                LoadData(day=yesterday.toString())
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(15.dp)
+            ) {
+                Icon(
+                    painter = painterResource(R.drawable.icons8_statistics_100),
+                    contentDescription = "stats icon"
+                )
+
+                Spacer(modifier = Modifier.padding(8.dp))
+
+                Text(
+                    text = "Statistics",
+                    fontSize = 24.sp,
+                    modifier = Modifier.weight(1f)
+                )
             }
+
+            Column {
+                LoadData(day=today.toString())
+            }
+
+            Row {
+                TextButton(
+                    onClick = {
+                        navController.navigate(Routes.DATA.route)
+                    }
+                ) {
+                    Text(text = "See all data")
+                }
+            }
+
+            Divider(modifier = Modifier)
 
             Row(
                 modifier = Modifier

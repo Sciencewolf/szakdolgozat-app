@@ -41,7 +41,7 @@ fun LoadData(modifier: Modifier = Modifier, day: String) {
                     // Convert API response to chart entries
                     statsResponse.value?.response?.let { dataList ->
                         val sampledEntries = dataList
-                            .filterIndexed { index, _ -> index % 50 == 0 } // Take every 50th entry
+                            .filterIndexed { index, _ -> index % 20 == 0 } // Take every 50th entry
 
                         tempEntries.value = sampledEntries.map { data ->
                             val timestamp = parseTimestampToFloat(data.timestamp)
@@ -66,7 +66,7 @@ fun LoadData(modifier: Modifier = Modifier, day: String) {
     }
 
     Column(modifier = modifier.padding(16.dp)) {
-        Text(text = "Temperature Data - $formattedDay", color = Color.White)
+        Text(text = "Temperature Data - $formattedDay(today)", color = Color.White)
         Spacer(modifier = Modifier.height(8.dp))
 
         if (tempEntries.value.isNotEmpty()) {
@@ -75,7 +75,7 @@ fun LoadData(modifier: Modifier = Modifier, day: String) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Text(text = "Humidity Data - $formattedDay", color = Color.White)
+        Text(text = "Humidity Data - $formattedDay(today)", color = Color.White)
         Spacer(modifier = Modifier.height(8.dp))
 
         if (humEntries.value.isNotEmpty()) {
@@ -92,7 +92,7 @@ fun parseTimestampToFloat(timestamp: String): Float {
     return try {
         val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
         val date = sdf.parse(timestamp)
-        date?.time?.div(1000)?.toFloat() ?: 0f  // Convert to seconds
+        date?.time?.div(1000)?.toFloat() ?: 0f
     } catch (e: Exception) {
         0f
     }

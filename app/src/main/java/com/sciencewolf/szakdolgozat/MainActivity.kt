@@ -99,7 +99,7 @@ private fun RoutingController(
         startDestination = Routes.HOME.route
     ) {
         composable(route = Routes.HOME.route) {
-            homePage.LoadHomePage()
+            homePage.LoadHomePage(navController)
             navBarComponent.NavBar(
                 focusOn = FOCUS_ON.HOME,
                 navController = navController
@@ -118,6 +118,9 @@ private fun RoutingController(
                 focusOn = FOCUS_ON.SETTINGS,
                 navController = navController
             )
+        }
+        composable(route = Routes.DATA.route) {
+            FullDataScreen(navController)
         }
     }
 }
