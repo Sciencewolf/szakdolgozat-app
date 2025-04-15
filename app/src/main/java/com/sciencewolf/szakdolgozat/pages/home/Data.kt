@@ -38,10 +38,9 @@ fun LoadData(modifier: Modifier = Modifier, day: String) {
                     statsResponse.value = response.body()
                     Log.d("LoadData", "Data received: ${statsResponse.value}")
 
-                    // Convert API response to chart entries
                     statsResponse.value?.response?.let { dataList ->
                         val sampledEntries = dataList
-                            .filterIndexed { index, _ -> index % 20 == 0 } // Take every 50th entry
+                            .filterIndexed { index, _ -> index % 20 == 0 }
 
                         tempEntries.value = sampledEntries.map { data ->
                             val timestamp = parseTimestampToFloat(data.timestamp)
@@ -66,22 +65,27 @@ fun LoadData(modifier: Modifier = Modifier, day: String) {
     }
 
     Column(modifier = modifier.padding(16.dp)) {
-        Text(text = "Temperature Data - $formattedDay(today)", color = Color.White)
-        Spacer(modifier = Modifier.height(8.dp))
+        if (statsResponse.value != null) {
+            Text(text = "Temperature Data - $formattedDay(today)", color = Color.White)
+            Spacer(modifier = Modifier.height(8.dp))
+        }
 
-        if (tempEntries.value.isNotEmpty()) {
+        if (tempEntries.value.isNotEmpty() && errorMessage.value == null) {
             LineChartView(entries = tempEntries.value, label = "Temperature", color = Color.Red)
         }
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Text(text = "Humidity Data - $formattedDay(today)", color = Color.White)
-        Spacer(modifier = Modifier.height(8.dp))
+        if (statsResponse.value != null) {
+            Text(text = "Humidity Data - $formattedDay(today)", color = Color.White)
+            Spacer(modifier = Modifier.height(8.dp))
+        }
+
 
         if (humEntries.value.isNotEmpty()) {
             LineChartView(entries = humEntries.value, label = "Humidity", color = Color.Blue)
         } else if (errorMessage.value != null) {
-            Text(text = "Error: ${errorMessage.value}", color = Color.Red)
+            Text(text = "No Data Available", color = Color.Red)
         } else {
             Text(text = stringResource(R.string.loading_data_text))
         }

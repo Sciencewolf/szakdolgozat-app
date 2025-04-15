@@ -45,7 +45,7 @@ fun FullDataScreen(navController: NavController) {
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
-            .verticalScroll(rememberScrollState()), // 🔹 Enable Scrolling
+            .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text("Full Hatching Data", color = Color.White)
@@ -101,7 +101,6 @@ fun ChartSection(title: String, entries: List<Entry>, label: String, color: Colo
     }
 }
 
-// 🔹 Fetch total hatching days
 suspend fun fetchTotalHatchingDays(): Int {
     return try {
         val response = RetrofitInstance.api.getDay()
@@ -111,7 +110,6 @@ suspend fun fetchTotalHatchingDays(): Int {
     }
 }
 
-// 🔹 Fetch next batch of 3 days (WITH DATA SAMPLING EVERY 50th ENTRY)
 suspend fun fetchNextDays(
     daysToLoad: Int,
     statsData: MutableList<Pair<String, List<Entry>>>,
@@ -132,7 +130,7 @@ suspend fun fetchNextDays(
 
             if (response.isSuccessful) {
                 response.body()?.response?.let { dataList ->
-                    val sampledEntries = dataList.filterIndexed { index, _ -> index % 50 == 0 } // 🔹 Sample every 50th entry
+                    val sampledEntries = dataList.filterIndexed { index, _ -> index % 50 == 0 }
 
                     val tempEntries = sampledEntries.mapNotNull { data ->
                         val timestamp = parseTimestampToFloat(data.timestamp ?: return@mapNotNull null)

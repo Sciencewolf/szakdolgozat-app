@@ -1,6 +1,7 @@
 package com.sciencewolf.szakdolgozat.pages.settings
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
@@ -23,38 +24,15 @@ import kotlinx.coroutines.withContext
 
 class GetVersionComponent {
     @Composable
-    fun GetAndDisplayVersion(supabase: SupabaseClient) {
-        var it by remember {
-            mutableStateOf<List<VersionScheme>>(listOf())
-        }
+    fun GetAndDisplayVersion() {
 
-        var version by remember {
-            mutableStateOf("")
-        }
-
-        LaunchedEffect(Unit) {
-            withContext(Dispatchers.IO) {
-                it = supabase
-                    .from("version")
-                    .select()
-                    .decodeList<VersionScheme>()
-            }
-        }
-
-        LazyRow (
+        Row (
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(12.dp),
             horizontalArrangement = Arrangement.End
         ){
-            items(
-                it,
-                key = {data -> data.id}
-            ) { data ->
-                version = data.v
-                Text(text = "v${version}")
-                Divider()
-            }
+            Text(text = "v2025.3.6")
         }
     }
 }

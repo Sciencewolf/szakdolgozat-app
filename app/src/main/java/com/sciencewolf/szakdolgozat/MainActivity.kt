@@ -2,7 +2,6 @@ package com.sciencewolf.szakdolgozat
 
 import LangPref
 import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -23,19 +22,13 @@ import com.sciencewolf.szakdolgozat.pages.settings.SettingsPage
 import com.sciencewolf.szakdolgozat.utils.FOCUS_ON
 import com.sciencewolf.szakdolgozat.utils.Routes
 import com.sciencewolf.szakdolgozat.ui.theme.AppTheme
-import io.github.jan.supabase.SupabaseClient
-import io.github.jan.supabase.createSupabaseClient
-import io.github.jan.supabase.postgrest.Postgrest
-import io.github.jan.supabase.storage.Storage
 import kotlinx.coroutines.launch
-import kotlin.time.Duration.Companion.seconds
 
 class MainActivity : ComponentActivity() {
     private val homePage = HomePage()
     private val controlPage = ControlPage()
     private val settingsPage = SettingsPage()
     private val navBarComponent = NavBarComponent()
-    private var supabase: SupabaseClient? = null;
     private lateinit var langPref: LangPref
 
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -53,23 +46,11 @@ class MainActivity : ComponentActivity() {
 
         super.onCreate(savedInstanceState)
 
-
-        supabase = createSupabaseClient(
-            supabaseUrl = resources.getString(R.string.supabaseUrl),
-            supabaseKey = resources.getString(R.string.supabaseKey)
-        ) {
-            install(Postgrest)
-            install(Storage) {
-                transferTimeout = 90.seconds
-            }
-        }
-
         setContent {
             AppTheme(darkTheme = true) {
                 Scaffold { innerPadding ->
                     Column(modifier = Modifier.padding(innerPadding)) {
                         RoutingController(
-                            supabase = supabase ?: return@Scaffold,
                             homePage = homePage,
                             controlPage = controlPage,
                             settingsPage = settingsPage,
@@ -86,7 +67,6 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 private fun RoutingController(
-    supabase: SupabaseClient,
     homePage: HomePage,
     controlPage: ControlPage,
     settingsPage: SettingsPage,
@@ -113,7 +93,7 @@ private fun RoutingController(
             )
         }
         composable(route = Routes.SETTINGS.route) {
-            settingsPage.LoadSettingsPage(supabase = supabase, langPref = langPref)
+            settingsPage.LoadSettingsPage(langPref = langPref)
             navBarComponent.NavBar(
                 focusOn = FOCUS_ON.SETTINGS,
                 navController = navController

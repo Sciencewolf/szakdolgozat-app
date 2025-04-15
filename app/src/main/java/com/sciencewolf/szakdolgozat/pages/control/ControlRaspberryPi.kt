@@ -337,10 +337,17 @@ open class ControlRaspberryPi {
             val dayText = day.value.response.ifEmpty { "1" }
             val progressValue = dayText.toFloatOrNull() ?: 1f
 
-            Text(
-                text = "Hatching at Day $dayText of 21",
-                fontSize = 20.sp
-            )
+            if (dayText.toInt() < 22) {
+                Text(
+                    text = "Hatching at Day $dayText  of 21",
+                    fontSize = 20.sp
+                )
+            } else {
+                Text(
+                    text = "Hatching finished",
+                    fontSize = 20.sp
+                )
+            }
             Spacer(modifier = Modifier.height(16.dp))
             LinearProgressIndicator(
                 progress = progressValue / 21f,
@@ -352,14 +359,16 @@ open class ControlRaspberryPi {
             )
             Spacer(modifier = Modifier.height(16.dp))
 
-            Text(
-                text = "Days remaining: ${21 - progressValue.toInt()} " +
-                        "(${
-                            LocalDate.now()
-                                .plusDays((21 - progressValue.toInt()).toLong())
-                        })",
-                fontSize = 20.sp
-            )
+            if(dayText.toInt() < 22) {
+                Text(
+                    text = "Days remaining: ${21 - progressValue.toInt()} " +
+                            "(${
+                                LocalDate.now()
+                                    .plusDays((21 - progressValue.toInt()).toLong())
+                            })",
+                    fontSize = 20.sp
+                )
+            }
         }
     }
 

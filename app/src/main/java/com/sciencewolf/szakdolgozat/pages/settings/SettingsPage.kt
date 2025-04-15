@@ -44,7 +44,6 @@ open class SettingsPage {
     @Composable
     fun LoadSettingsPage(
         modifier: Modifier = Modifier,
-        supabase: SupabaseClient,
         langPref: LangPref
     ) {
         var expanded by remember { mutableStateOf(false) }
@@ -67,7 +66,7 @@ open class SettingsPage {
                     fontSize = 32.sp,
                     modifier = Modifier.padding(horizontal = 16.dp)
                 )
-                showAppVersionComponent.GetAndDisplayVersion(supabase = supabase)
+                showAppVersionComponent.GetAndDisplayVersion()
             }
             Spacer(modifier = Modifier.padding(vertical = 20.dp))
             Column (
