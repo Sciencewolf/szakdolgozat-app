@@ -4,7 +4,7 @@
 > - More info (EN, HU): https://github.com/Sciencewolf/szakdolgozat
 
 # Requirements
-- Android >= 9(Pie), preferable Android >= 12 
+- Android >= 9(Pie), preferable Android >= 12(Snow Cone)
 
 # Download
 - https://github.com/Sciencewolf/szakdolgozat-app/releases/tag/v2025.4.16
