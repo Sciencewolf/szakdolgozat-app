@@ -32,7 +32,7 @@ class GetVersionComponent {
                 .padding(12.dp),
             horizontalArrangement = Arrangement.End
         ){
-            Text(text = "v2025.3.6")
+            Text(text = "v2025.4.16-final")
         }
     }
 }
